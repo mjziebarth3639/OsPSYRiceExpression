@@ -1,0 +1,789 @@
+---
+title: "rice genes"
+author: "Maya Ziebarth"
+date: "2025-07-08"
+output: 
+  html_notebook: 
+    toc: true
+    css: www/reproductivestages.png
+  html_document:
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+runtime: shiny
+---
+
+```{r setup, include=FALSE, EVAL = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(eval = FALSE)
+knitr::opts_knit$set(root.dir = "/Users/mayaziebarth/Desktop/Ronald Lab/rice_app/rice")
+```
+
+```{r}
+library(tidyverse)
+library(jsonlite)
+library(skimr)
+library(dplyr)
+library(janitor)
+library(RColorBrewer)
+library(paletteer)
+library(ggthemes)
+library(ggplot2)
+library(shiny)
+library(shinydashboard)
+library(bslib)
+library(shinythemes)
+library(thematic)
+```
+
+```{r}
+library(bslib)
+```
+
+
+### OsPSYR1 data
+
+#### Stages, exc leaf and root 
+
+```{r}
+json_string1 <- '[{"name":"Seedling_Root_Rep1","value":"186.518"},{"name":"Seedling_Root_Rep2","value":"299.477"},{"name":"Seedling_Root_Rep3","value":"255.581"},{"name":"MatureLeaf_Rep1","value":"34.4201"},{"name":"MatureLeaf_Rep2","value":"8.15198"},{"name":"MatureLeaf_Rep3","value":"41.2431"},{"name":"YoungLeaf_Rep1","value":"61.7583"},{"name":"YoungLeaf_Rep2","value":"106.041"},{"name":"YoungLeaf_Rep3","value":"46.173"},{"name":"SAM_Rep1","value":"1371.08"},{"name":"SAM_Rep2","value":"1846.28"},{"name":"SAM_Rep3","value":"1374.58"},{"name":"YoungInflorescence_Rep1","value":"387.136"},{"name":"YoungInflorescence_Rep2","value":"339.229"},{"name":"YoungInflorescence_Rep3","value":"314.496"},{"name":"InflorescenceP2_Rep1","value":"190.025"},{"name":"InflorescenceP2_Rep2","value":"214.833"},{"name":"InflorescenceP2_Rep3","value":"218.335"},{"name":"InflorescenceP3_Rep1","value":"393.506"},{"name":"InflorescenceP3_Rep2","value":"370.559"},{"name":"InflorescenceP3_Rep3","value":"386.242"},{"name":"InflorescenceP4_Rep1","value":"305.965"},{"name":"InflorescenceP4_Rep2","value":"272.508"},{"name":"InflorescenceP4_Rep3","value":"306.641"},{"name":"InflorescenceP5_Rep1","value":"546.943"},{"name":"InflorescenceP5_Rep2","value":"498.505"},{"name":"InflorescenceP5_Rep3","value":"553.791"},{"name":"InflorescenceP6_Rep1","value":"122.77"},{"name":"InflorescenceP6_Rep2","value":"190.882"},{"name":"InflorescenceP6_Rep3","value":"148.922"},{"name":"Seed_S1_Rep1","value":"451.299"},{"name":"Seed_S1_Rep2","value":"738.009"},{"name":"Seed_S1_Rep3","value":"724.682"},{"name":"Seed_S2_Rep1","value":"131.774"},{"name":"Seed_S2_Rep2","value":"101.909"},{"name":"Seed_S2_Rep3","value":"175.655"},{"name":"Seed_S3_Rep1","value":"165.845"},{"name":"Seed_S3_Rep2","value":"113.435"},{"name":"Seed_S3_Rep3","value":"159.465"},{"name":"Seed_S4_Rep1","value":"113.005"},{"name":"Seed_S4_Rep2","value":"86.3515"},{"name":"Seed_S4_Rep3","value":"90.604"},{"name":"Seed_S5_Rep1","value":"122.226"},{"name":"Seed_S5_Rep2","value":"83.6413"},{"name":"Seed_S5_Rep3","value":"81.2791"},{"name":"Stigma_Rep1","value":"105.169"},{"name":"Stigma_Rep2","value":"117.937"},{"name":"Stigma_Rep3","value":"115.129"},{"name":"Ovary_Rep1","value":"398.195"},{"name":"Ovary_Rep2","value":"416.751"},{"name":"Ovary_Rep3","value":"337.358"},{"name":"SuspensionCell_Rep1","value":"194.988"},{"name":"Shoot_Rep1","value":"87.6737"},{"name":"Root_Rep1","value":"106.742"},{"name":"Anther_Rep1","value":"41.0533"},{"name":"Embryo_Rep1","value":"361.636"},{"name":"Endosperm_Rep1","value":"9.93091"},{"name":"5d-seed_Rep1","value":"109.226"}, {"name":"Aerobic_coleoptile_Rep1","value":"176.223"},{"name":"Aerobic_coleoptile_Rep2","value":"119.402"},{"name":"Anoxic_coleoptile_Rep1","value":"279.939"},{"name":"Anoxic_coleoptile_Rep2","value":"213.459"}, {"name":"RICE_CTRL","value":"115.129"}]'
+ospsyr1JSON <- fromJSON(json_string1)
+```
+
+```{r}
+OsPSYR1 <- ospsyr1JSON %>% 
+  separate(name, into=c("name", "Sample #"), sep="_Rep") 
+```
+
+```{r}
+OsPSYR1$value <- as.numeric(OsPSYR1$value)
+```
+
+
+```{r}
+summary(OsPSYR1)
+```
+
+
+```{r}
+ OsPSYR1 %>% 
+  ggplot(aes(x=name, y=value, colour= `Sample #`))+
+  geom_jitter(show.legend=TRUE, na.rm = T)+
+  coord_cartesian(ylim = c(min(OsPSYR1$value), max(2000)) ) +
+  scale_y_continuous(breaks= c(0,250, 500, 750, 1000, 1250, 1500, 1750, 2000)) +
+  scale_fill_brewer(palette = "Dark2")+
+  theme_light()+
+  theme(legend.position="right", 
+        axis.text.x = element_text(angle = 45, hjust=1.2, color="black"), 
+        axis.text.y = element_text(angle = 0, hjust=1.2, color="black"), 
+        legend.key.size = unit(0.5, "cm"))+
+  labs(title = "OsPSYR1",
+       x = "Life Stage",
+       y= "Value",
+       fill= "Sample #")
+```
+
+```{r}
+OsPSYR1 %>% 
+  filter(value >= 350) %>% 
+  ggplot(aes(x=name, y=value, fill= `Sample #`))+
+  geom_col(show.legend=TRUE, color="grey50", na.rm = T, position = position_dodge(width = 0.8))+
+  coord_cartesian(ylim = c(min(0), max(2000))) +
+  scale_fill_brewer(palette = "Greens")+
+  theme_light()+
+  theme(legend.position="right", 
+        axis.text.x = element_text(angle = 45, hjust=1.2, color="black"), 
+        axis.text.y = element_text(angle = 0, hjust=1.2, color="black"), 
+        legend.key.size = unit(0.5, "cm"))+
+  labs(title = "OsPSYR1 Expression 3rd Quartile",
+       x = "Life Stage",
+       y= "Value")
+```
+
+
+### OsPSYR2 data
+
+#### Stages
+
+```{r}
+json_string2 <- '[{"name":"Seedling_Root_Rep1","value":"1691.76"},{"name":"Seedling_Root_Rep2","value":"1613.14"},{"name":"Seedling_Root_Rep3","value":"1472.27"},{"name":"MatureLeaf_Rep1","value":"241.107"},{"name":"MatureLeaf_Rep2","value":"267.32"},{"name":"MatureLeaf_Rep3","value":"574.511"},{"name":"YoungLeaf_Rep1","value":"928.539"},{"name":"YoungLeaf_Rep2","value":"956.677"},{"name":"YoungLeaf_Rep3","value":"894.605"},{"name":"SAM_Rep1","value":"999.701"},{"name":"SAM_Rep2","value":"975.001"},{"name":"SAM_Rep3","value":"857.725"},{"name":"YoungInflorescence_Rep1","value":"4020.89"},{"name":"YoungInflorescence_Rep2","value":"2410.54"},{"name":"YoungInflorescence_Rep3","value":"2858.52"},{"name":"InflorescenceP2_Rep1","value":"2137.13"},{"name":"InflorescenceP2_Rep2","value":"2267.71"},{"name":"InflorescenceP2_Rep3","value":"2276.46"},{"name":"InflorescenceP3_Rep1","value":"4046.53"},{"name":"InflorescenceP3_Rep2","value":"3618.31"},{"name":"InflorescenceP3_Rep3","value":"4421.7"},{"name":"InflorescenceP4_Rep1","value":"4433.8"},{"name":"InflorescenceP4_Rep2","value":"4145.5"},{"name":"InflorescenceP4_Rep3","value":"4889.35"},{"name":"InflorescenceP5_Rep1","value":"2523.14"},{"name":"InflorescenceP5_Rep2","value":"2429.34"},{"name":"InflorescenceP5_Rep3","value":"2282.03"},{"name":"InflorescenceP6_Rep1","value":"1733.76"},{"name":"InflorescenceP6_Rep2","value":"1823.38"},{"name":"InflorescenceP6_Rep3","value":"1736.75"},{"name":"Seed_S1_Rep1","value":"2381.32"},{"name":"Seed_S1_Rep2","value":"2697.48"},{"name":"Seed_S1_Rep3","value":"2712.98"},{"name":"Seed_S2_Rep1","value":"2037.99"},{"name":"Seed_S2_Rep2","value":"1696.04"},{"name":"Seed_S2_Rep3","value":"2037.93"},{"name":"Seed_S3_Rep1","value":"1262.18"},{"name":"Seed_S3_Rep2","value":"1408.55"},{"name":"Seed_S3_Rep3","value":"1731.29"},{"name":"Seed_S4_Rep1","value":"1036.33"},{"name":"Seed_S4_Rep2","value":"904.301"},{"name":"Seed_S4_Rep3","value":"1113.98"},{"name":"Seed_S5_Rep1","value":"712.078"},{"name":"Seed_S5_Rep2","value":"766.468"},{"name":"Seed_S5_Rep3","value":"697.543"},{"name":"Stigma_Rep1","value":"1738"},{"name":"Stigma_Rep2","value":"1634.51"},{"name":"Stigma_Rep3","value":"1553.69"},{"name":"Ovary_Rep1","value":"1246.51"},{"name":"Ovary_Rep2","value":"1279.12"},{"name":"Ovary_Rep3","value":"1246.23"},{"name":"SuspensionCell_Rep1","value":"846.182"},{"name":"Shoot_Rep1","value":"363.016"},{"name":"Root_Rep1","value":"1197.82"},{"name":"Anther_Rep1","value":"413.025"},{"name":"Embryo_Rep1","value":"900.979"},{"name":"Endosperm_Rep1","value":"265.912"},{"name":"5d-seed_Rep1","value":"287.304"}, {"name":"Aerobic_coleoptile_Rep1","value":"1448.79"},{"name":"Aerobic_coleoptile_Rep2","value":"1283.9"},{"name":"Anoxic_coleoptile_Rep1","value":"789.858"},{"name":"Anoxic_coleoptile_Rep2","value":"857.482"}, {"name":"RICE_CTRL","value":"1070.69"}]'
+
+ospsyr2JSON <- fromJSON(json_string2)
+```
+
+```{r}
+OsPSYR2 <- ospsyr2JSON %>% 
+  separate(name, into=c("name", "Sample #"), sep="_Rep") 
+```
+
+```{r}
+OsPSYR2$value <- as.numeric(OsPSYR2$value)
+```
+
+
+```{r}
+summary(OsPSYR2)
+```
+
+
+```{r}
+ OsPSYR2 %>% 
+  ggplot(aes(x=name, y=value, colour= `Sample #`))+
+  geom_jitter(show.legend=TRUE, na.rm = T)+
+  coord_cartesian(ylim = c(min(0), max(5000))) +
+  scale_fill_brewer(palette = "Dark2")+
+  theme_light()+
+  theme(legend.position="right", 
+        axis.text.x = element_text(angle = 45, hjust=1.2, color="black"), 
+        axis.text.y = element_text(angle = 0, hjust=1.2, color="black"), 
+        legend.key.size = unit(0.5, "cm"))+
+  labs(title = "OsPSYR2",
+       x = "Life Stage",
+       y= "Value",
+       fill= "Sample #")
+```
+
+```{r}
+OsPSYR2 %>% 
+  filter(value >= 2272.1) %>% 
+  ggplot(aes(x=name, y=value, fill= `Sample #`))+
+  geom_col(show.legend=TRUE, color="grey50", na.rm = T, position = position_dodge(width = 0.8))+
+  coord_cartesian(ylim = c(min(0), max(5000))) +
+  scale_fill_brewer(palette = "Greens")+
+  theme_light()+
+  theme(legend.position="right", 
+        axis.text.x = element_text(angle = 45, hjust=1.2, color="black"), 
+        axis.text.y = element_text(angle = 0, hjust=1.2, color="black"), 
+        legend.key.size = unit(0.5, "cm"))+
+  labs(title = "OsPSYR2 Expression 3rd Quartile",
+       x = "Life Stage",
+       y= "Value")
+```
+
+
+
+### OsPSY4 data
+
+#### Stages
+
+```{r}
+json_string3 <- '[{"name":"Seedling_Root_Rep1","value":"1896.65"},{"name":"Seedling_Root_Rep2","value":"1844.54"},{"name":"Seedling_Root_Rep3","value":"1916.31"},{"name":"MatureLeaf_Rep1","value":"1375.48"},{"name":"MatureLeaf_Rep2","value":"1321.41"},{"name":"MatureLeaf_Rep3","value":"1679.63"},{"name":"YoungLeaf_Rep1","value":"2111.38"},{"name":"YoungLeaf_Rep2","value":"1913.63"},{"name":"YoungLeaf_Rep3","value":"2860.13"},{"name":"SAM_Rep1","value":"669.913"},{"name":"SAM_Rep2","value":"737.604"},{"name":"SAM_Rep3","value":"550.782"},{"name":"YoungInflorescence_Rep1","value":"880.759"},{"name":"YoungInflorescence_Rep2","value":"1064.84"},{"name":"YoungInflorescence_Rep3","value":"1501.67"},{"name":"InflorescenceP2_Rep1","value":"1033.92"},{"name":"InflorescenceP2_Rep2","value":"948.022"},{"name":"InflorescenceP2_Rep3","value":"941.335"},{"name":"InflorescenceP3_Rep1","value":"1035.9"},{"name":"InflorescenceP3_Rep2","value":"1364.78"},{"name":"InflorescenceP3_Rep3","value":"1295.84"},{"name":"InflorescenceP4_Rep1","value":"1324.48"},{"name":"InflorescenceP4_Rep2","value":"1457.69"},{"name":"InflorescenceP4_Rep3","value":"1280.95"},{"name":"InflorescenceP5_Rep1","value":"1089.39"},{"name":"InflorescenceP5_Rep2","value":"1451.68"},{"name":"InflorescenceP5_Rep3","value":"1324.47"},{"name":"InflorescenceP6_Rep1","value":"2376.01"},{"name":"InflorescenceP6_Rep2","value":"2670.33"},{"name":"InflorescenceP6_Rep3","value":"2839.44"},{"name":"Seed_S1_Rep1","value":"1980.76"},{"name":"Seed_S1_Rep2","value":"1972.66"},{"name":"Seed_S1_Rep3","value":"2391.39"},{"name":"Seed_S2_Rep1","value":"1459.54"},{"name":"Seed_S2_Rep2","value":"1620.12"},{"name":"Seed_S2_Rep3","value":"1530.8"},{"name":"Seed_S3_Rep1","value":"1690.4"},{"name":"Seed_S3_Rep2","value":"1531.55"},{"name":"Seed_S3_Rep3","value":"1577.77"},{"name":"Seed_S4_Rep1","value":"1912.15"},{"name":"Seed_S4_Rep2","value":"1894.71"},{"name":"Seed_S4_Rep3","value":"2120.19"},{"name":"Seed_S5_Rep1","value":"2417.35"},{"name":"Seed_S5_Rep2","value":"2661.34"},{"name":"Seed_S5_Rep3","value":"3032.98"}, {"name":"Stigma_Rep1","value":"817.987"},{"name":"Stigma_Rep2","value":"964.226"},{"name":"Stigma_Rep3","value":"953.361"},{"name":"Ovary_Rep1","value":"572.141"},{"name":"Ovary_Rep2","value":"608.633"},{"name":"Ovary_Rep3","value":"976.123"},{"name":"SuspensionCell_Rep1","value":"166.062"},{"name":"Shoot_Rep1","value":"2391.83"},{"name":"Root_Rep1","value":"1656.28"},{"name":"Anther_Rep1","value":"2327.55"},{"name":"Embryo_Rep1","value":"1666.7"},{"name":"Endosperm_Rep1","value":"1326.51"},{"name":"5d-seed_Rep1","value":"1924.93"}, {"name":"Aerobic_coleoptile_Rep1","value":"410.122"},{"name":"Aerobic_coleoptile_Rep2","value":"478.443"},{"name":"Anoxic_coleoptile_Rep1","value":"483.001"},{"name":"Anoxic_coleoptile_Rep2","value":"655.604"} ,{"name":"RICE_CTRL","value":"480.722"}]'
+ospsy4JSON <- fromJSON(json_string3)
+```
+
+```{r}
+OsPSY4 <- ospsy4JSON %>% 
+  separate(name, into=c("name", "Sample #"), sep="_Rep") 
+```
+
+```{r}
+OsPSY4$value <- as.numeric(OsPSY4$value)
+```
+
+
+```{r}
+summary(OsPSY4)
+```
+
+
+```{r}
+ OsPSY4 %>% 
+  ggplot(aes(x=name, y=value, colour= `Sample #`))+
+  geom_jitter(show.legend=TRUE, na.rm = T)+
+  coord_cartesian(ylim = c(min(0), max(3500))) +
+  scale_y_continuous(breaks = c(0, 500, 1000, 1500, 2000, 2500, 3000, 3500))+
+  scale_fill_brewer(palette = "Dark2")+
+  theme_light()+
+  theme(legend.position="right", 
+        axis.text.x = element_text(angle = 45, hjust=1.2, color="black"), 
+        axis.text.y = element_text(angle = 0, hjust=1.2, color="black"), 
+        legend.key.size = unit(0.5, "cm"))+
+  labs(title = "OsPSY4",
+       x = "Life Stage",
+       y= "Value")
+```
+
+```{r}
+OsPSY4 %>% 
+  filter(value >= 1915) %>% 
+  ggplot(aes(x=name, y=value, fill= `Sample #`))+
+  geom_col(show.legend=TRUE, color="grey50", na.rm = T, position = position_dodge(width = 0.8))+
+  coord_cartesian(ylim = c(min(0), max(3500))) +
+  scale_y_continuous(breaks = c(0, 500, 1000, 1500, 2000, 2500, 3000, 3500))+
+  scale_fill_brewer(palette = "Greens")+
+  theme_light()+
+  theme(legend.position="right", 
+        axis.text.x = element_text(angle = 45, hjust=1.2, color="black"), 
+        axis.text.y = element_text(angle = 0, hjust=1.2, color="black"), 
+        legend.key.size = unit(0.5, "cm"))+
+  labs(title = "OsPSY4 Expression 3rd Quartile",
+       x = "Life Stage",
+       y= "Value")
+```
+
+
+### Overlay of all Genes
+
+```{r}
+combined <- list(OsPSYR1 = OsPSYR1, OsPSYR2 = OsPSYR2, OsPSY4 = OsPSY4)
+
+combined_summary <- bind_rows(lapply(names(combined), function(df_label) {
+  combined[[df_label]] %>%
+    group_by(name) %>%
+    summarise(mean_value = mean(value, na.rm = TRUE)) %>%
+    mutate(Gene = df_label)
+})) 
+```
+
+
+```{r}
+summary(combined_summary)
+```
+
+
+```{r message=TRUE}
+ combined_summary %>% 
+  ggplot(aes(x=name, y=mean_value, fill=Gene))+
+  geom_col(na.rm=T,color="grey50", position = position_dodge(width = 0.8), show.legend=TRUE)+
+  coord_cartesian(ylim = c(min(0), max(5000))) +
+  scale_fill_brewer(palette="greens")+
+  theme_light()+
+  theme(legend.position="right", 
+        axis.text.x = element_text(angle = 45, hjust=1.2, color="black"), 
+        axis.text.y = element_text(angle = 0, hjust=1.2, color="black"), 
+        legend.key.size = unit(0.5, "cm"))+
+  labs(title = "OsPSY Genes",
+       x = "Life Stage",
+       y= "Value (mean)")
+```
+
+```{r message=TRUE}
+combined_summary %>% 
+  filter(mean_value >= 350) %>% 
+  ggplot(aes(x=name, y=mean_value, fill=Gene))+
+  geom_col(show.legend=TRUE, color="grey50", na.rm = T, position = position_dodge(width = 0.8))+
+  coord_cartesian(ylim = c(min(0), max(5000))) +
+  scale_fill_brewer(palette = "Blues")+
+  theme_light()+
+  theme(legend.position="right", 
+        axis.text.x = element_text(angle = 45, hjust=1.2, color="black"), 
+        axis.text.y = element_text(angle = 0, hjust=1.2, color="black"), 
+        legend.key.size = unit(0.5, "cm"))+
+  labs(title = " OsPSY Genes Mean Expression 3rd Quartile",
+       x = "Life Stage",
+       y= "Value (mean)")
+```
+
+```{r}
+combined_summary %>% 
+  filter(name %in% c("Embryo", "InflorescenceP3", "InflorescenceP5", "Ovary", "SAM", "Seed_S1")) %>% 
+  filter(mean_value >= 350) %>% 
+  ggplot(aes(x=name, y=mean_value, fill=Gene))+
+  geom_col(show.legend=TRUE, color="grey50", na.rm = T, position = position_dodge(width = 0.8))+
+  coord_cartesian(ylim = c(min(combined_summary$mean_value), max(combined_summary$mean_value))) +
+  scale_y_continuous(breaks = c(0, 1000,2000, 3000, 4000, 5000))+
+  scale_fill_manual(palette = "Blues")+
+  theme_light()+
+  theme(legend.position="right", 
+        axis.text.x = element_text(angle = 45, hjust=1.2, color="black"), 
+        axis.text.y = element_text(angle = 0, hjust=1.2, color="black"), 
+        legend.key.size = unit(0.5, "cm"))+
+  labs(title = "Equal Amounts of Expression",
+       x = "Life Stage",
+       y= "Value (mean)")
+```
+
+```{r}
+table(combined_summary$name)
+```
+
+
+### Shiny App 
+
+```{r}
+my_theme <- bs_theme(
+  version = 5,
+  bootswatch = "minty", 
+  primary = "#21716F",   
+  base_font = font_google("Roboto"),
+  bg = "#F9FDFC",
+  fg = "#2c2d2e", 
+  recompile = TRUE
+)
+
+addResourcePath("prefix", "www")
+
+ui <- fluidPage(
+  theme = my_theme,
+    tags$head(
+    tags$style(HTML("
+      body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .centered-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .tab-content {
+        margin-top: 30px;
+      }
+
+      .custom-container {
+        padding: 0 20px;
+      }
+
+      .card {
+        margin-bottom: 20px;
+      }
+
+      .title-panel {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+    "))
+  ),
+
+  div(
+    class = "centered-content",
+    
+    div(class = "title-panel",
+        style = "background-color: #C8DBDB; color: #2c2d2e; padding: 20px; border-radius: 12px;",
+        titlePanel("OsPSY Gene Expression in Rice")
+    ),
+    
+    tabsetPanel(id = "tabs", type = "tabs",
+      
+      tabPanel("Dashboard",
+        h3("Overview"),
+        uiOutput("my_text"),
+        fluidRow(
+        column(width=8,
+               card(full_screen = TRUE,
+                card_header("Reproductive Stages:"),
+                card_body(tags$img(src = "prefix/reproductivestages.png")))
+               ),
+        column(width=4,
+               card(
+                card_header("Sources"),
+                card_body(uiOutput("my_text11")))
+          )
+        )
+      ),
+      
+     tabPanel("OsPSYR1",
+        h4("OsPSYR1 Gene Expression"),
+        uiOutput("my_text1"),
+        fluidRow(
+          column(
+            width = 9,
+            card(
+              full_screen = TRUE,
+              plotOutput("plot1", height = "450px")
+            )
+          ),
+          column(
+            width = 3,
+            tags$button(
+              class = "btn btn-primary mb-2",
+              type = "button",
+              `data-bs-toggle` = "collapse",
+              `data-bs-target` = "#controls-collapse-1",
+              "Data Controls"
+            ),
+            div(
+              class = "collapse",
+              id = "controls-collapse-1",
+              card(
+                card_header("Expression Level Range:"),
+                card_body(
+                  sliderInput("value_range1", "Levels",
+                              min = 0,
+                              max = ceiling(max(OsPSYR1$value, na.rm = TRUE)),
+                              value = c(0, ceiling(max(OsPSYR1$value, na.rm = TRUE))),
+                              step = 10)
+                )
+              ),
+              card(
+                card_header("Life Stages:"),
+                card_body(
+                  checkboxGroupInput("selected_names1", "Stages",
+                                     choices = unique(OsPSYR1$name),
+                                     selected = unique(OsPSYR1$name))
+          )
+        )
+      )
+    )
+  )
+),
+      
+      tabPanel("OsPSYR2",
+        h4("OsPSYR2 Gene Expression"),
+        uiOutput("my_text2"),
+        fluidRow(
+          column(
+            width = 9,
+            card(
+              full_screen = TRUE,
+              plotOutput("plot2", height = "450px")
+            )
+          ),
+            column(
+            width = 3,
+            tags$button(
+              class = "btn btn-primary mb-2",
+              type = "button",
+              `data-bs-toggle` = "collapse",
+              `data-bs-target` = "#controls-collapse-2",
+              "Data Controls"
+            ),
+             div(
+              class = "collapse", 
+              id = "controls-collapse-2",
+              card(
+                card_header("Expression Level Range:"),
+                card_body(
+                  sliderInput("value_range2", "Levels",
+                              min = 0,
+                              max = ceiling(max(OsPSYR2$value, na.rm = TRUE)),
+                              value = c(0, ceiling(max(OsPSYR2$value, na.rm = TRUE))),
+                              step = 10)
+                )
+              ),
+              card(
+                card_header("Life Stages:"),
+                card_body(
+                  checkboxGroupInput("selected_names2", "Stages",
+                                     choices = unique(OsPSYR2$name),
+                                     selected = unique(OsPSYR2$name))
+                )
+              )
+            )
+          )
+        )
+      ),
+      
+      tabPanel("OsPSY4",
+        h4("OsPSY4 Gene Expression"),
+        uiOutput("my_text3"),
+        fluidRow(
+          column(
+            width = 9,
+            card(
+              full_screen = TRUE,
+              plotOutput("plot3", height = "450px")
+            )
+          ),
+          column(
+            width = 3,
+            tags$button(
+              class = "btn btn-primary mb-2",
+              type = "button",
+              `data-bs-toggle` = "collapse",
+              `data-bs-target` = "#controls-collapse-3",
+              "Data Controls"
+            ),
+             div(
+              class = "collapse", 
+              id = "controls-collapse-3",
+              card(
+                card_header("Expression Level Range:"),
+                card_body(
+                  sliderInput("value_range3", "Levels",
+                              min = 0,
+                              max = ceiling(max(OsPSY4$value, na.rm = TRUE)),
+                              value = c(0, ceiling(max(OsPSY4$value, na.rm = TRUE))),
+                              step = 10)
+                )
+              ),
+              card(
+                card_header("Life Stages:"),
+                card_body(
+                  checkboxGroupInput("selected_names3", "Stages",
+                                     choices = unique(OsPSY4$name),
+                                     selected = unique(OsPSY4$name))
+                )
+              )
+            )
+          )
+        )
+      ),
+      
+      tabPanel("Overall",
+        h4("All Genes Expression Comparison"),
+        uiOutput("my_text4"),
+        fluidRow(
+          column(
+            width = 9,
+            card(
+              full_screen = TRUE,
+              plotOutput("plot4", height = "450px")
+            )
+          ),         
+           column(
+            width = 3,
+            tags$button(
+              class = "btn btn-primary mb-2",
+              type = "button",
+              `data-bs-toggle` = "collapse",
+              `data-bs-target` = "#controls-collapse-4",
+              "Data Controls"
+            ),
+             div(
+              class = "collapse", 
+              id = "controls-collapse-4",
+              card(
+                card_header("Expression Level Range:"),
+                card_body(
+                  sliderInput("value_range4", "Levels",
+                              min = 0,
+                              max = ceiling(max(combined_summary$mean_value, na.rm = TRUE)),
+                              value = c(0, ceiling(max(combined_summary$mean_value, na.rm = TRUE))),
+                              step = 10)
+                )
+              ),
+              card(
+                card_header("Life Stages:"),
+                card_body(
+                  checkboxGroupInput("selected_names4", "Stages",
+                                     choices = unique(combined_summary$name),
+                                     selected = unique(combined_summary$name))
+                )
+              )
+            )
+          )
+        ),
+ 
+        h4("Best Stage to Collect if We Wanted the Most Amount of Staining:"),
+        uiOutput("my_text5"),
+        fluidRow(
+          column(
+            width = 9,
+            card(
+              plotOutput("plot5", height = "450px")
+            )
+          )
+        )
+      )
+    )
+  )
+)
+
+
+server <- function(input, output, session) {
+ # Dash
+  output$my_text <- renderUI({
+   HTML( "<p><b> Introduction </b></p>
+   <p> This tiny website demonstrates the expression levels of 3 OsPSY genes in rice that we are trying to test with GUS staining! Each life stage has different levels of expression which we need to be aware of before GUS staining. This can allow us to confirm with previous data given by ePlant and so we can better explore the expression levels in that life stage. For example, in the previous round of GUS staining from EXP71, we stained that colepotile stage. The OsPSYR2 has the highest level of gene expression during that life stage which is consistent with the data given in ePlant, which can also be shown futher on the 'Overall' tab. Please explore the tabs and mess around with the selecters to extract the data you want to see!</p>
+  <p> The reproductive stage of rice begins when at the panicle formation and ends with the flowering stages. Panicle formation begins in the stem and is not visalble except for a 'green band' above the node. It then undergoes booting where meiosis occurs, followed by the heading stage where the panicle exserts and the rest of the stem and leaf. Once fully exserted, the anthers expose their pollen and the stigma can be fertilized in anthesis. Finally, the hulls begin to have proturding caryosises and begin to yellow. </p>"
+   )
+ })
+  
+  output$my_text11 <- renderUI({
+  HTML("<p><b> Source of Data:  </b>
+  <br> ePlant and subsequent datasets </br>
+  <br> Counce, P., Hardke, J., Moldenhaur, K.(2001) <i>'Rice Growth and Development'</i>, ch.2 </br>
+  "
+   )
+  })
+  
+   # --- OsPSYR1 ---
+  output$my_text1 <- renderUI({
+   HTML( "<p> The OsPSYR1 Gene is found on the 7th chromosome. It overall has low levels of gene expression, with it's highest level being in the SAM. Though this level is much higher in this life stage than others, is is not as much as the other genes. </p>
+    <p> The highest levels of expression in the this gene are: 
+    <br> SAM, Stage 1 Seed, InforescenceP5, Ovary, InfloresencseP3 and YoungInfloresence.</br></p>
+    <p> The exprssion levels in relation to reproduction show that this gene is highly expressed early in the reproductive stage as the panicle is first developed in the stem (SAM). </p>
+    ")
+  })
+  
+  output$plot1 <- renderPlot({
+    req(input$selected_names1, input$value_range1)
+    filtered_data1 <- OsPSYR1 %>%
+      filter(name %in% input$selected_names1,
+             value >= input$value_range1[1],
+             value <= input$value_range1[2])
+    
+    ggplot(filtered_data1, aes(x = name, y = value, fill = `Sample #`)) +
+    geom_col(na.rm = TRUE, color = "grey50", position = position_dodge(width = 0.8), show.legend = TRUE) +
+      coord_cartesian(ylim = c(min(0), max(input$value_range1))) +
+      scale_y_continuous(breaks = seq(0, 2000, by = 250)) +
+      scale_fill_manual(values = c(
+        "1" = "#21716F",  
+        "2" = "#35B5B2",  
+        "3"  = "#B3E3E2",
+        "NA" = "grey50"))+ 
+      theme_light() +
+      theme(
+        legend.position = "right", 
+        axis.text.x = element_text(angle = 45, hjust = 1.2, color = "black"), 
+        axis.text.y = element_text(angle = 0, hjust = 1.2, color = "black"), 
+        legend.key.size = unit(0.5, "cm")
+      ) +
+      labs(
+        title = "OsPSYR1",
+        x = "Life Stage",
+        y = "Value",
+        fill = "Sample #"
+      )
+  })
+
+  # --- OsPSYR2 ---
+    output$my_text2 <- renderUI({
+    HTML(" <p> The OsPSYR2 gene has much higher levels of expression thoughout most life stages compared to the other genes. It is located on Chromosome 4. </p>
+    <p> The highest levels of expression in the this gene are: 
+    <br> InforescenceP4, InfloresencseP3, YoungInfloresence, Stage 1 Seed, InforescenceP5 and InfloresencseP2. </br></p>
+    <p> This gene has many levels of high expression that are important for the flowering of the pancle in more of the later stages of reproduction. It is also of note that as the seed developes, the gene is expressed less, indicating that it's purpose is aimed towards helping the plant in flowering. </p>
+      ")
+  })
+  
+  output$plot2 <- renderPlot({
+    req(input$selected_names2, input$value_range2)
+    filtered_data2 <- OsPSYR2 %>%
+      filter(name %in% input$selected_names2,
+             value >= input$value_range2[1],
+             value <= input$value_range2[2])
+    
+    ggplot(filtered_data2, aes(x = name, y = value, fill = `Sample #`)) +
+    geom_col(na.rm = TRUE, color = "grey50", position = position_dodge(width = 0.8), show.legend = TRUE) +
+      coord_cartesian(ylim = c(min(0), max(input$value_range2))) +
+      scale_y_continuous(breaks = seq(0, 5000, by = 1000)) +
+      scale_fill_manual(values = c(
+        "1" = "#21716F",  
+        "2" = "#35B5B2",  
+        "3"  = "#B3E3E2",
+        "NA" = "grey50"))+
+      theme_light() +
+      theme(
+        legend.position = "right", 
+        axis.text.x = element_text(angle = 45, hjust = 1.2, color = "black"), 
+        axis.text.y = element_text(angle = 0, hjust = 1.2, color = "black"), 
+        legend.key.size = unit(0.5, "cm")
+      ) +
+      labs(
+        title = "OsPSYR2",
+        x = "Life Stage",
+        y = "Value",
+        fill = "Sample #"
+      )
+  })
+
+  # --- OsPSY4 ---
+    output$my_text3 <- renderUI({
+    HTML("<p> The OsPSY4 gene has a moderate amount of expression and is located on Chromosome 1. In comparison to the other genes, the OsPSY4 gene has a more consistent expression thoughout the life of the plant and is more imortant int seed development than the flowering stages. </p>
+    <p> The highest levels of expression in the this gene are: 
+    <br> Stage 5 seed, Young Leaf, InfloresencseP6, YoungInfloresence, Shoot and Anther. </br></p>
+    <p> This gene has more expression in the sexual organs of the plant than the others examined. As said before, there is increasing expression levels towards then end of the flowering stages which is when the anthers and florets are ready for fertilization. </p>
+      ")
+  })
+  
+  output$plot3 <- renderPlot({
+    req(input$selected_names3, input$value_range3)
+    filtered_data3 <- OsPSY4 %>%
+      filter(name %in% input$selected_names3,
+             value >= input$value_range3[1],
+             value <= input$value_range3[2])
+    
+    ggplot(filtered_data3, aes(x = name, y = value, fill = `Sample #`)) +
+    geom_col(na.rm = TRUE, color = "grey50", position = position_dodge(width = 0.8), show.legend = TRUE) +
+      coord_cartesian(ylim = c(min(0), max(input$value_range3))) +
+      scale_y_continuous(breaks = seq(0, 3500, by = 500)) +
+      scale_fill_manual(values = c(
+        "1" = "#21716F",  
+        "2" = "#35B5B2",  
+        "3"  = "#B3E3E2",
+        "NA" = "grey50"))+ 
+      theme_light() +
+      theme(
+        legend.position = "right", 
+        axis.text.x = element_text(angle = 45, hjust = 1.2, color = "black"), 
+        axis.text.y = element_text(angle = 0, hjust = 1.2, color = "black"), 
+        legend.key.size = unit(0.5, "cm")
+      ) +
+      labs(
+        title = "OsPSY4",
+        x = "Life Stage",
+        y = "Value",
+        fill = "Sample #"
+      )
+  })
+  
+  # --- All Genes ---
+    output$my_text4 <- renderUI({
+    HTML("<p> Here we can compare the all three genes by using the averages of all the samples from before. This graph is the most valuable when wanting to know how the expression levels will compare next to each other in the experiments we are conducting.</p>
+      <p> I find it interesting that OsPSYR1 has such a low expression compared to the others. Also that these 3 have their strengths within each stage. </p>
+         ")
+  })
+  
+  output$plot4 <- renderPlot({
+  req(input$selected_names4, input$value_range4)
+  filtered_data4 <- combined_summary %>%
+    filter(name %in% input$selected_names4,
+           mean_value >= input$value_range4[1],
+           mean_value <= input$value_range4[2])
+  
+  ggplot(filtered_data4, aes(x = name, y = mean_value, fill = Gene)) +
+    geom_col(na.rm = TRUE, color = "grey50", position = position_dodge(width = 0.8), show.legend = TRUE) +
+    coord_cartesian(ylim = c(min(0), max(input$value_range4))) +
+    scale_y_continuous(breaks = seq(0, 5000, by = 1000)) +
+    scale_fill_manual(values = c(
+      "OsPSYR1" = "#21716F",  
+      "OsPSYR2" = "#35B5B2",  
+      "OsPSY4"  = "#B3E3E2",
+      "NA" = "grey50"))+
+    theme_light() +
+    theme(
+      legend.position = "right", 
+      axis.text.x = element_text(angle = 45, hjust = 1.2, color = "black"), 
+      axis.text.y = element_text(angle = 0, hjust = 1.2, color = "black"), 
+      legend.key.size = unit(0.5, "cm")
+    ) +
+    labs(
+      title = "OsPSY Genes",
+      x = "Life Stage",
+      y = "Value (mean)"
+    )
+})
+  
+    output$my_text5 <- renderUI({
+    HTML("<p> If we wanted to see the highest amount of staining, these 6 options would be the best. If we wanted to see the most even amount of staining, we would look at the ovary. This is interesting in relatioin to reproduction as it shows that all of these genes put te same amount of energy to express themselves in this part of the plant during this life stage. </p>
+         ")
+  })
+  
+  output$plot5 <- renderPlot({
+    combined_summary %>% 
+  filter(name %in% c("Embryo", "InflorescenceP3", "InflorescenceP5", "Ovary", "SAM", "Seed_S1")) %>% 
+  filter(mean_value >= 350) %>% 
+  ggplot(aes(x=name, y=mean_value, fill=Gene))+
+  geom_col(show.legend=TRUE, color="grey50", na.rm = T, position = position_dodge(width = 0.8))+
+  coord_cartesian(ylim = c(min(combined_summary$mean_value), max(combined_summary$mean_value))) +
+  scale_y_continuous(breaks = c(0, 1000,2000, 3000, 4000, 5000))+
+    scale_fill_manual(values = c(
+      "OsPSYR1" = "#21716F",  
+      "OsPSYR2" = "#35B5B2",  
+      "OsPSY4"  = "#B3E3E2",
+      "NA" = "grey50"))+
+  theme_light()+
+  theme(legend.position="right", 
+        axis.text.x = element_text(angle = 45, hjust=1.2, color="black"), 
+        axis.text.y = element_text(angle = 0, hjust=1.2, color="black"), 
+        legend.key.size = unit(0.5, "cm"))+
+  labs(title = "Equal Amounts of Expression",
+       x = "Life Stage",
+       y= "Value (mean)")
+    
+  })
+  
+}
+
+appObj <- shinyApp(ui=ui, server=server, options = list(theme= my_theme))
+
+runApp(appObj)
+```
+
+
+

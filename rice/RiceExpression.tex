@@ -1,0 +1,501 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={rice genes},
+  pdfauthor={Maya Ziebarth},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{rice genes}
+\author{Maya Ziebarth}
+\date{2025-07-08}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"jsonlite"}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(jsonlite)}
+\FunctionTok{library}\NormalTok{(skimr)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(janitor)}
+\FunctionTok{library}\NormalTok{(RColorBrewer)}
+\FunctionTok{library}\NormalTok{(paletteer)}
+\FunctionTok{library}\NormalTok{(ggthemes)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(shiny)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{OsPSYR1 data}\label{ospsyr1-data}
+
+\paragraph{Stages, exc leaf and root}\label{stages-exc-leaf-and-root}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{json\_string1 }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}[\{"name":"Seedling\_Root\_Rep1","value":"186.518"\},\{"name":"Seedling\_Root\_Rep2","value":"299.477"\},\{"name":"Seedling\_Root\_Rep3","value":"255.581"\},\{"name":"MatureLeaf\_Rep1","value":"34.4201"\},\{"name":"MatureLeaf\_Rep2","value":"8.15198"\},\{"name":"MatureLeaf\_Rep3","value":"41.2431"\},\{"name":"YoungLeaf\_Rep1","value":"61.7583"\},\{"name":"YoungLeaf\_Rep2","value":"106.041"\},\{"name":"YoungLeaf\_Rep3","value":"46.173"\},\{"name":"SAM\_Rep1","value":"1371.08"\},\{"name":"SAM\_Rep2","value":"1846.28"\},\{"name":"SAM\_Rep3","value":"1374.58"\},\{"name":"YoungInflorescence\_Rep1","value":"387.136"\},\{"name":"YoungInflorescence\_Rep2","value":"339.229"\},\{"name":"YoungInflorescence\_Rep3","value":"314.496"\},\{"name":"InflorescenceP2\_Rep1","value":"190.025"\},\{"name":"InflorescenceP2\_Rep2","value":"214.833"\},\{"name":"InflorescenceP2\_Rep3","value":"218.335"\},\{"name":"InflorescenceP3\_Rep1","value":"393.506"\},\{"name":"InflorescenceP3\_Rep2","value":"370.559"\},\{"name":"InflorescenceP3\_Rep3","value":"386.242"\},\{"name":"InflorescenceP4\_Rep1","value":"305.965"\},\{"name":"InflorescenceP4\_Rep2","value":"272.508"\},\{"name":"InflorescenceP4\_Rep3","value":"306.641"\},\{"name":"InflorescenceP5\_Rep1","value":"546.943"\},\{"name":"InflorescenceP5\_Rep2","value":"498.505"\},\{"name":"InflorescenceP5\_Rep3","value":"553.791"\},\{"name":"InflorescenceP6\_Rep1","value":"122.77"\},\{"name":"InflorescenceP6\_Rep2","value":"190.882"\},\{"name":"InflorescenceP6\_Rep3","value":"148.922"\},\{"name":"Seed\_S1\_Rep1","value":"451.299"\},\{"name":"Seed\_S1\_Rep2","value":"738.009"\},\{"name":"Seed\_S1\_Rep3","value":"724.682"\},\{"name":"Seed\_S2\_Rep1","value":"131.774"\},\{"name":"Seed\_S2\_Rep2","value":"101.909"\},\{"name":"Seed\_S2\_Rep3","value":"175.655"\},\{"name":"Seed\_S3\_Rep1","value":"165.845"\},\{"name":"Seed\_S3\_Rep2","value":"113.435"\},\{"name":"Seed\_S3\_Rep3","value":"159.465"\},\{"name":"Seed\_S4\_Rep1","value":"113.005"\},\{"name":"Seed\_S4\_Rep2","value":"86.3515"\},\{"name":"Seed\_S4\_Rep3","value":"90.604"\},\{"name":"Seed\_S5\_Rep1","value":"122.226"\},\{"name":"Seed\_S5\_Rep2","value":"83.6413"\},\{"name":"Seed\_S5\_Rep3","value":"81.2791"\},\{"name":"Stigma\_Rep1","value":"105.169"\},\{"name":"Stigma\_Rep2","value":"117.937"\},\{"name":"Stigma\_Rep3","value":"115.129"\},\{"name":"Ovary\_Rep1","value":"398.195"\},\{"name":"Ovary\_Rep2","value":"416.751"\},\{"name":"Ovary\_Rep3","value":"337.358"\},\{"name":"SuspensionCell\_Rep1","value":"194.988"\},\{"name":"Shoot\_Rep1","value":"87.6737"\},\{"name":"Root\_Rep1","value":"106.742"\},\{"name":"Anther\_Rep1","value":"41.0533"\},\{"name":"Embryo\_Rep1","value":"361.636"\},\{"name":"Endosperm\_Rep1","value":"9.93091"\},\{"name":"5d{-}seed\_Rep1","value":"109.226"\}, \{"name":"Aerobic\_coleoptile\_Rep1","value":"176.223"\},\{"name":"Aerobic\_coleoptile\_Rep2","value":"119.402"\},\{"name":"Anoxic\_coleoptile\_Rep1","value":"279.939"\},\{"name":"Anoxic\_coleoptile\_Rep2","value":"213.459"\}, \{"name":"RICE\_CTRL","value":"115.129"\}]\textquotesingle{}}
+\NormalTok{ospsyr1JSON }\OtherTok{\textless{}{-}} \FunctionTok{fromJSON}\NormalTok{(json\_string1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{OsPSYR1 }\OtherTok{\textless{}{-}}\NormalTok{ ospsyr1JSON }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{separate}\NormalTok{(name, }\AttributeTok{into=}\FunctionTok{c}\NormalTok{(}\StringTok{"name"}\NormalTok{, }\StringTok{"Sample \#"}\NormalTok{), }\AttributeTok{sep=}\StringTok{"\_Rep"}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(OsPSYR1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ OsPSYR1 }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{name, }\AttributeTok{y=}\NormalTok{value, }\AttributeTok{colour=} \StringTok{\textasciigrave{}}\AttributeTok{Sample \#}\StringTok{\textasciigrave{}}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{geom\_jitter}\NormalTok{(}\AttributeTok{show.legend=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{na.rm =}\NormalTok{ T)}\SpecialCharTok{+}
+  \FunctionTok{coord\_cartesian}\NormalTok{(}\AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\FunctionTok{min}\NormalTok{(}\DecValTok{0}\NormalTok{), }\FunctionTok{max}\NormalTok{(}\DecValTok{2000}\NormalTok{)), ) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{"Dark2"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{theme\_light}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position=}\StringTok{"right"}\NormalTok{, }
+        \AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust=}\FloatTok{1.2}\NormalTok{, }\AttributeTok{color=}\StringTok{"black"}\NormalTok{), }
+        \AttributeTok{axis.text.y =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{0}\NormalTok{, }\AttributeTok{hjust=}\FloatTok{1.2}\NormalTok{, }\AttributeTok{color=}\StringTok{"black"}\NormalTok{), }
+        \AttributeTok{legend.key.size =} \FunctionTok{unit}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\StringTok{"cm"}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"OsPSYR1"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Life Stage"}\NormalTok{,}
+       \AttributeTok{y=} \StringTok{"Value"}\NormalTok{,}
+       \AttributeTok{fill=} \StringTok{"Sample \#"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{OsPSYR1 }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(value }\SpecialCharTok{\textgreater{}=} \DecValTok{350}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{name, }\AttributeTok{y=}\NormalTok{value, }\AttributeTok{fill=} \StringTok{\textasciigrave{}}\AttributeTok{Sample \#}\StringTok{\textasciigrave{}}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{(}\AttributeTok{show.legend=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{color=}\StringTok{"grey50"}\NormalTok{, }\AttributeTok{na.rm =}\NormalTok{ T, }\AttributeTok{position =} \FunctionTok{position\_dodge}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.8}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{coord\_cartesian}\NormalTok{(}\AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\FunctionTok{min}\NormalTok{(}\DecValTok{0}\NormalTok{), }\FunctionTok{max}\NormalTok{(}\DecValTok{2000}\NormalTok{))) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{"Greens"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{theme\_light}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position=}\StringTok{"right"}\NormalTok{, }
+        \AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust=}\FloatTok{1.2}\NormalTok{, }\AttributeTok{color=}\StringTok{"black"}\NormalTok{), }
+        \AttributeTok{axis.text.y =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{0}\NormalTok{, }\AttributeTok{hjust=}\FloatTok{1.2}\NormalTok{, }\AttributeTok{color=}\StringTok{"black"}\NormalTok{), }
+        \AttributeTok{legend.key.size =} \FunctionTok{unit}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\StringTok{"cm"}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"OsPSYR1 Expression 3rd Quartile"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Life Stage"}\NormalTok{,}
+       \AttributeTok{y=} \StringTok{"Value"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{OsPSYR2 data}\label{ospsyr2-data}
+
+\paragraph{Stages}\label{stages}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{json\_string2 }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}[\{"name":"Seedling\_Root\_Rep1","value":"1691.76"\},\{"name":"Seedling\_Root\_Rep2","value":"1613.14"\},\{"name":"Seedling\_Root\_Rep3","value":"1472.27"\},\{"name":"MatureLeaf\_Rep1","value":"241.107"\},\{"name":"MatureLeaf\_Rep2","value":"267.32"\},\{"name":"MatureLeaf\_Rep3","value":"574.511"\},\{"name":"YoungLeaf\_Rep1","value":"928.539"\},\{"name":"YoungLeaf\_Rep2","value":"956.677"\},\{"name":"YoungLeaf\_Rep3","value":"894.605"\},\{"name":"SAM\_Rep1","value":"999.701"\},\{"name":"SAM\_Rep2","value":"975.001"\},\{"name":"SAM\_Rep3","value":"857.725"\},\{"name":"YoungInflorescence\_Rep1","value":"4020.89"\},\{"name":"YoungInflorescence\_Rep2","value":"2410.54"\},\{"name":"YoungInflorescence\_Rep3","value":"2858.52"\},\{"name":"InflorescenceP2\_Rep1","value":"2137.13"\},\{"name":"InflorescenceP2\_Rep2","value":"2267.71"\},\{"name":"InflorescenceP2\_Rep3","value":"2276.46"\},\{"name":"InflorescenceP3\_Rep1","value":"4046.53"\},\{"name":"InflorescenceP3\_Rep2","value":"3618.31"\},\{"name":"InflorescenceP3\_Rep3","value":"4421.7"\},\{"name":"InflorescenceP4\_Rep1","value":"4433.8"\},\{"name":"InflorescenceP4\_Rep2","value":"4145.5"\},\{"name":"InflorescenceP4\_Rep3","value":"4889.35"\},\{"name":"InflorescenceP5\_Rep1","value":"2523.14"\},\{"name":"InflorescenceP5\_Rep2","value":"2429.34"\},\{"name":"InflorescenceP5\_Rep3","value":"2282.03"\},\{"name":"InflorescenceP6\_Rep1","value":"1733.76"\},\{"name":"InflorescenceP6\_Rep2","value":"1823.38"\},\{"name":"InflorescenceP6\_Rep3","value":"1736.75"\},\{"name":"Seed\_S1\_Rep1","value":"2381.32"\},\{"name":"Seed\_S1\_Rep2","value":"2697.48"\},\{"name":"Seed\_S1\_Rep3","value":"2712.98"\},\{"name":"Seed\_S2\_Rep1","value":"2037.99"\},\{"name":"Seed\_S2\_Rep2","value":"1696.04"\},\{"name":"Seed\_S2\_Rep3","value":"2037.93"\},\{"name":"Seed\_S3\_Rep1","value":"1262.18"\},\{"name":"Seed\_S3\_Rep2","value":"1408.55"\},\{"name":"Seed\_S3\_Rep3","value":"1731.29"\},\{"name":"Seed\_S4\_Rep1","value":"1036.33"\},\{"name":"Seed\_S4\_Rep2","value":"904.301"\},\{"name":"Seed\_S4\_Rep3","value":"1113.98"\},\{"name":"Seed\_S5\_Rep1","value":"712.078"\},\{"name":"Seed\_S5\_Rep2","value":"766.468"\},\{"name":"Seed\_S5\_Rep3","value":"697.543"\},\{"name":"Stigma\_Rep1","value":"1738"\},\{"name":"Stigma\_Rep2","value":"1634.51"\},\{"name":"Stigma\_Rep3","value":"1553.69"\},\{"name":"Ovary\_Rep1","value":"1246.51"\},\{"name":"Ovary\_Rep2","value":"1279.12"\},\{"name":"Ovary\_Rep3","value":"1246.23"\},\{"name":"SuspensionCell\_Rep1","value":"846.182"\},\{"name":"Shoot\_Rep1","value":"363.016"\},\{"name":"Root\_Rep1","value":"1197.82"\},\{"name":"Anther\_Rep1","value":"413.025"\},\{"name":"Embryo\_Rep1","value":"900.979"\},\{"name":"Endosperm\_Rep1","value":"265.912"\},\{"name":"5d{-}seed\_Rep1","value":"287.304"\}, \{"name":"Aerobic\_coleoptile\_Rep1","value":"1448.79"\},\{"name":"Aerobic\_coleoptile\_Rep2","value":"1283.9"\},\{"name":"Anoxic\_coleoptile\_Rep1","value":"789.858"\},\{"name":"Anoxic\_coleoptile\_Rep2","value":"857.482"\}, \{"name":"RICE\_CTRL","value":"1070.69"\}]\textquotesingle{}}
+
+\NormalTok{ospsyr2JSON }\OtherTok{\textless{}{-}} \FunctionTok{fromJSON}\NormalTok{(json\_string2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{OsPSYR2 }\OtherTok{\textless{}{-}}\NormalTok{ ospsyr2JSON }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{separate}\NormalTok{(name, }\AttributeTok{into=}\FunctionTok{c}\NormalTok{(}\StringTok{"name"}\NormalTok{, }\StringTok{"Sample \#"}\NormalTok{), }\AttributeTok{sep=}\StringTok{"\_Rep"}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(OsPSYR2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ OsPSYR2 }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{name, }\AttributeTok{y=}\NormalTok{value, }\AttributeTok{colour=} \StringTok{\textasciigrave{}}\AttributeTok{Sample \#}\StringTok{\textasciigrave{}}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{geom\_jitter}\NormalTok{(}\AttributeTok{show.legend=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{na.rm =}\NormalTok{ T)}\SpecialCharTok{+}
+  \FunctionTok{coord\_cartesian}\NormalTok{(}\AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\FunctionTok{min}\NormalTok{(}\DecValTok{0}\NormalTok{), }\FunctionTok{max}\NormalTok{(}\DecValTok{5000}\NormalTok{))) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{"Dark2"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{theme\_light}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position=}\StringTok{"right"}\NormalTok{, }
+        \AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust=}\FloatTok{1.2}\NormalTok{, }\AttributeTok{color=}\StringTok{"black"}\NormalTok{), }
+        \AttributeTok{axis.text.y =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{0}\NormalTok{, }\AttributeTok{hjust=}\FloatTok{1.2}\NormalTok{, }\AttributeTok{color=}\StringTok{"black"}\NormalTok{), }
+        \AttributeTok{legend.key.size =} \FunctionTok{unit}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\StringTok{"cm"}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"OsPSYR2"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Life Stage"}\NormalTok{,}
+       \AttributeTok{y=} \StringTok{"Value"}\NormalTok{,}
+       \AttributeTok{fill=} \StringTok{"Sample \#"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{OsPSYR2 }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(value }\SpecialCharTok{\textgreater{}=} \FloatTok{2272.1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{name, }\AttributeTok{y=}\NormalTok{value, }\AttributeTok{fill=} \StringTok{\textasciigrave{}}\AttributeTok{Sample \#}\StringTok{\textasciigrave{}}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{(}\AttributeTok{show.legend=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{color=}\StringTok{"grey50"}\NormalTok{, }\AttributeTok{na.rm =}\NormalTok{ T, }\AttributeTok{position =} \FunctionTok{position\_dodge}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.8}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{coord\_cartesian}\NormalTok{(}\AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\FunctionTok{min}\NormalTok{(}\DecValTok{0}\NormalTok{), }\FunctionTok{max}\NormalTok{(}\DecValTok{5000}\NormalTok{))) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{"Greens"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{theme\_light}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position=}\StringTok{"right"}\NormalTok{, }
+        \AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust=}\FloatTok{1.2}\NormalTok{, }\AttributeTok{color=}\StringTok{"black"}\NormalTok{), }
+        \AttributeTok{axis.text.y =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{0}\NormalTok{, }\AttributeTok{hjust=}\FloatTok{1.2}\NormalTok{, }\AttributeTok{color=}\StringTok{"black"}\NormalTok{), }
+        \AttributeTok{legend.key.size =} \FunctionTok{unit}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\StringTok{"cm"}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"OsPSYR2 Expression 3rd Quartile"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Life Stage"}\NormalTok{,}
+       \AttributeTok{y=} \StringTok{"Value"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{OsPSY4 data}\label{ospsy4-data}
+
+\paragraph{Stages}\label{stages-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{json\_string3 }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}[\{"name":"Seedling\_Root\_Rep1","value":"1896.65"\},\{"name":"Seedling\_Root\_Rep2","value":"1844.54"\},\{"name":"Seedling\_Root\_Rep3","value":"1916.31"\},\{"name":"MatureLeaf\_Rep1","value":"1375.48"\},\{"name":"MatureLeaf\_Rep2","value":"1321.41"\},\{"name":"MatureLeaf\_Rep3","value":"1679.63"\},\{"name":"YoungLeaf\_Rep1","value":"2111.38"\},\{"name":"YoungLeaf\_Rep2","value":"1913.63"\},\{"name":"YoungLeaf\_Rep3","value":"2860.13"\},\{"name":"SAM\_Rep1","value":"669.913"\},\{"name":"SAM\_Rep2","value":"737.604"\},\{"name":"SAM\_Rep3","value":"550.782"\},\{"name":"YoungInflorescence\_Rep1","value":"880.759"\},\{"name":"YoungInflorescence\_Rep2","value":"1064.84"\},\{"name":"YoungInflorescence\_Rep3","value":"1501.67"\},\{"name":"InflorescenceP2\_Rep1","value":"1033.92"\},\{"name":"InflorescenceP2\_Rep2","value":"948.022"\},\{"name":"InflorescenceP2\_Rep3","value":"941.335"\},\{"name":"InflorescenceP3\_Rep1","value":"1035.9"\},\{"name":"InflorescenceP3\_Rep2","value":"1364.78"\},\{"name":"InflorescenceP3\_Rep3","value":"1295.84"\},\{"name":"InflorescenceP4\_Rep1","value":"1324.48"\},\{"name":"InflorescenceP4\_Rep2","value":"1457.69"\},\{"name":"InflorescenceP4\_Rep3","value":"1280.95"\},\{"name":"InflorescenceP5\_Rep1","value":"1089.39"\},\{"name":"InflorescenceP5\_Rep2","value":"1451.68"\},\{"name":"InflorescenceP5\_Rep3","value":"1324.47"\},\{"name":"InflorescenceP6\_Rep1","value":"2376.01"\},\{"name":"InflorescenceP6\_Rep2","value":"2670.33"\},\{"name":"InflorescenceP6\_Rep3","value":"2839.44"\},\{"name":"Seed\_S1\_Rep1","value":"1980.76"\},\{"name":"Seed\_S1\_Rep2","value":"1972.66"\},\{"name":"Seed\_S1\_Rep3","value":"2391.39"\},\{"name":"Seed\_S2\_Rep1","value":"1459.54"\},\{"name":"Seed\_S2\_Rep2","value":"1620.12"\},\{"name":"Seed\_S2\_Rep3","value":"1530.8"\},\{"name":"Seed\_S3\_Rep1","value":"1690.4"\},\{"name":"Seed\_S3\_Rep2","value":"1531.55"\},\{"name":"Seed\_S3\_Rep3","value":"1577.77"\},\{"name":"Seed\_S4\_Rep1","value":"1912.15"\},\{"name":"Seed\_S4\_Rep2","value":"1894.71"\},\{"name":"Seed\_S4\_Rep3","value":"2120.19"\},\{"name":"Seed\_S5\_Rep1","value":"2417.35"\},\{"name":"Seed\_S5\_Rep2","value":"2661.34"\},\{"name":"Seed\_S5\_Rep3","value":"3032.98"\}, \{"name":"Stigma\_Rep1","value":"817.987"\},\{"name":"Stigma\_Rep2","value":"964.226"\},\{"name":"Stigma\_Rep3","value":"953.361"\},\{"name":"Ovary\_Rep1","value":"572.141"\},\{"name":"Ovary\_Rep2","value":"608.633"\},\{"name":"Ovary\_Rep3","value":"976.123"\},\{"name":"SuspensionCell\_Rep1","value":"166.062"\},\{"name":"Shoot\_Rep1","value":"2391.83"\},\{"name":"Root\_Rep1","value":"1656.28"\},\{"name":"Anther\_Rep1","value":"2327.55"\},\{"name":"Embryo\_Rep1","value":"1666.7"\},\{"name":"Endosperm\_Rep1","value":"1326.51"\},\{"name":"5d{-}seed\_Rep1","value":"1924.93"\}, \{"name":"Aerobic\_coleoptile\_Rep1","value":"410.122"\},\{"name":"Aerobic\_coleoptile\_Rep2","value":"478.443"\},\{"name":"Anoxic\_coleoptile\_Rep1","value":"483.001"\},\{"name":"Anoxic\_coleoptile\_Rep2","value":"655.604"\} ,\{"name":"RICE\_CTRL","value":"480.722"\}]\textquotesingle{}}
+\NormalTok{ospsy4JSON }\OtherTok{\textless{}{-}} \FunctionTok{fromJSON}\NormalTok{(json\_string3)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{OsPSY4 }\OtherTok{\textless{}{-}}\NormalTok{ ospsy4JSON }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{separate}\NormalTok{(name, }\AttributeTok{into=}\FunctionTok{c}\NormalTok{(}\StringTok{"name"}\NormalTok{, }\StringTok{"Sample \#"}\NormalTok{), }\AttributeTok{sep=}\StringTok{"\_Rep"}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(OsPSY4)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ OsPSY4 }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{name, }\AttributeTok{y=}\NormalTok{value, }\AttributeTok{colour=} \StringTok{\textasciigrave{}}\AttributeTok{Sample \#}\StringTok{\textasciigrave{}}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{geom\_jitter}\NormalTok{(}\AttributeTok{show.legend=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{na.rm =}\NormalTok{ T)}\SpecialCharTok{+}
+  \FunctionTok{coord\_cartesian}\NormalTok{(}\AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\FunctionTok{min}\NormalTok{(}\DecValTok{0}\NormalTok{), }\FunctionTok{max}\NormalTok{(}\DecValTok{3500}\NormalTok{))) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{breaks =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{500}\NormalTok{, }\DecValTok{1000}\NormalTok{, }\DecValTok{1500}\NormalTok{, }\DecValTok{2000}\NormalTok{, }\DecValTok{2500}\NormalTok{, }\DecValTok{3000}\NormalTok{, }\DecValTok{3500}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{"Dark2"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{theme\_light}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position=}\StringTok{"right"}\NormalTok{, }
+        \AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust=}\FloatTok{1.2}\NormalTok{, }\AttributeTok{color=}\StringTok{"black"}\NormalTok{), }
+        \AttributeTok{axis.text.y =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{0}\NormalTok{, }\AttributeTok{hjust=}\FloatTok{1.2}\NormalTok{, }\AttributeTok{color=}\StringTok{"black"}\NormalTok{), }
+        \AttributeTok{legend.key.size =} \FunctionTok{unit}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\StringTok{"cm"}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"OsPSY4"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Life Stage"}\NormalTok{,}
+       \AttributeTok{y=} \StringTok{"Value"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{OsPSY4 }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(value }\SpecialCharTok{\textgreater{}=} \DecValTok{1915}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{name, }\AttributeTok{y=}\NormalTok{value, }\AttributeTok{fill=} \StringTok{\textasciigrave{}}\AttributeTok{Sample \#}\StringTok{\textasciigrave{}}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{(}\AttributeTok{show.legend=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{color=}\StringTok{"grey50"}\NormalTok{, }\AttributeTok{na.rm =}\NormalTok{ T, }\AttributeTok{position =} \FunctionTok{position\_dodge}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.8}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{coord\_cartesian}\NormalTok{(}\AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\FunctionTok{min}\NormalTok{(}\DecValTok{0}\NormalTok{), }\FunctionTok{max}\NormalTok{(}\DecValTok{3500}\NormalTok{))) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{breaks =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{500}\NormalTok{, }\DecValTok{1000}\NormalTok{, }\DecValTok{1500}\NormalTok{, }\DecValTok{2000}\NormalTok{, }\DecValTok{2500}\NormalTok{, }\DecValTok{3000}\NormalTok{, }\DecValTok{3500}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{"Greens"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{theme\_light}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position=}\StringTok{"right"}\NormalTok{, }
+        \AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust=}\FloatTok{1.2}\NormalTok{, }\AttributeTok{color=}\StringTok{"black"}\NormalTok{), }
+        \AttributeTok{axis.text.y =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{0}\NormalTok{, }\AttributeTok{hjust=}\FloatTok{1.2}\NormalTok{, }\AttributeTok{color=}\StringTok{"black"}\NormalTok{), }
+        \AttributeTok{legend.key.size =} \FunctionTok{unit}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\StringTok{"cm"}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"OsPSY4 Expression 3rd Quartile"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Life Stage"}\NormalTok{,}
+       \AttributeTok{y=} \StringTok{"Value"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Overlay of all Genes}\label{overlay-of-all-genes}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{combined }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\AttributeTok{OsPSYR1 =}\NormalTok{ OsPSYR1, }\AttributeTok{OsPSYR2 =}\NormalTok{ OsPSYR2, }\AttributeTok{OsPSY4 =}\NormalTok{ OsPSY4)}
+
+\NormalTok{combined\_summary }\OtherTok{\textless{}{-}} \FunctionTok{bind\_rows}\NormalTok{(}\FunctionTok{lapply}\NormalTok{(}\FunctionTok{names}\NormalTok{(combined), }\ControlFlowTok{function}\NormalTok{(df\_label) \{}
+\NormalTok{  combined[[df\_label]] }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{group\_by}\NormalTok{(name) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{summarise}\NormalTok{(}\AttributeTok{mean\_value =} \FunctionTok{mean}\NormalTok{(value, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Gene =}\NormalTok{ df\_label)}
+\NormalTok{\})) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(combined\_summary)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ combined\_summary }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{name, }\AttributeTok{y=}\NormalTok{mean\_value, }\AttributeTok{fill=}\NormalTok{Gene))}\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{(}\AttributeTok{na.rm=}\NormalTok{T,}\AttributeTok{color=}\StringTok{"grey50"}\NormalTok{, }\AttributeTok{position =} \FunctionTok{position\_dodge}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.8}\NormalTok{), }\AttributeTok{show.legend=}\ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{coord\_cartesian}\NormalTok{(}\AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\FunctionTok{min}\NormalTok{(}\DecValTok{0}\NormalTok{), }\FunctionTok{max}\NormalTok{(}\DecValTok{5000}\NormalTok{))) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette=}\StringTok{"Blues"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{theme\_light}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position=}\StringTok{"right"}\NormalTok{, }
+        \AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust=}\FloatTok{1.2}\NormalTok{, }\AttributeTok{color=}\StringTok{"black"}\NormalTok{), }
+        \AttributeTok{axis.text.y =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{0}\NormalTok{, }\AttributeTok{hjust=}\FloatTok{1.2}\NormalTok{, }\AttributeTok{color=}\StringTok{"black"}\NormalTok{), }
+        \AttributeTok{legend.key.size =} \FunctionTok{unit}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\StringTok{"cm"}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"OsPSY Genes"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Life Stage"}\NormalTok{,}
+       \AttributeTok{y=} \StringTok{"Value (mean)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{combined\_summary }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(mean\_value }\SpecialCharTok{\textgreater{}=} \DecValTok{350}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{name, }\AttributeTok{y=}\NormalTok{mean\_value, }\AttributeTok{fill=}\NormalTok{Gene))}\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{(}\AttributeTok{show.legend=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{color=}\StringTok{"grey50"}\NormalTok{, }\AttributeTok{na.rm =}\NormalTok{ T, }\AttributeTok{position =} \FunctionTok{position\_dodge}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.8}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{coord\_cartesian}\NormalTok{(}\AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\FunctionTok{min}\NormalTok{(}\DecValTok{0}\NormalTok{), }\FunctionTok{max}\NormalTok{(}\DecValTok{5000}\NormalTok{))) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{"Blues"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{theme\_light}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position=}\StringTok{"right"}\NormalTok{, }
+        \AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust=}\FloatTok{1.2}\NormalTok{, }\AttributeTok{color=}\StringTok{"black"}\NormalTok{), }
+        \AttributeTok{axis.text.y =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{0}\NormalTok{, }\AttributeTok{hjust=}\FloatTok{1.2}\NormalTok{, }\AttributeTok{color=}\StringTok{"black"}\NormalTok{), }
+        \AttributeTok{legend.key.size =} \FunctionTok{unit}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\StringTok{"cm"}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{" OsPSY Genes Mean Expression 3rd Quartile"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Life Stage"}\NormalTok{,}
+       \AttributeTok{y=} \StringTok{"Value (mean)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{combined\_summary }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(name }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"Embryo"}\NormalTok{, }\StringTok{"InflorescenceP3"}\NormalTok{, }\StringTok{"InflorescenceP5"}\NormalTok{, }\StringTok{"Ovary"}\NormalTok{, }\StringTok{"SAM"}\NormalTok{, }\StringTok{"Seed\_S1"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(mean\_value }\SpecialCharTok{\textgreater{}=} \DecValTok{350}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{name, }\AttributeTok{y=}\NormalTok{mean\_value, }\AttributeTok{fill=}\NormalTok{Gene))}\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{(}\AttributeTok{show.legend=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{color=}\StringTok{"grey50"}\NormalTok{, }\AttributeTok{na.rm =}\NormalTok{ T, }\AttributeTok{position =} \FunctionTok{position\_dodge}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.8}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{coord\_cartesian}\NormalTok{(}\AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\FunctionTok{min}\NormalTok{(combined\_summary}\SpecialCharTok{$}\NormalTok{mean\_value), }\FunctionTok{max}\NormalTok{(combined\_summary}\SpecialCharTok{$}\NormalTok{mean\_value))) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{breaks =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1000}\NormalTok{,}\DecValTok{2000}\NormalTok{, }\DecValTok{3000}\NormalTok{, }\DecValTok{4000}\NormalTok{, }\DecValTok{5000}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{"Blues"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{theme\_light}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position=}\StringTok{"right"}\NormalTok{, }
+        \AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust=}\FloatTok{1.2}\NormalTok{, }\AttributeTok{color=}\StringTok{"black"}\NormalTok{), }
+        \AttributeTok{axis.text.y =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{0}\NormalTok{, }\AttributeTok{hjust=}\FloatTok{1.2}\NormalTok{, }\AttributeTok{color=}\StringTok{"black"}\NormalTok{), }
+        \AttributeTok{legend.key.size =} \FunctionTok{unit}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\StringTok{"cm"}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Equal Amounts of Expression"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Life Stage"}\NormalTok{,}
+       \AttributeTok{y=} \StringTok{"Value (mean)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Shiny App}\label{shiny-app}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ui }\OtherTok{\textless{}{-}} \FunctionTok{fluidPage}\NormalTok{( }
+  \FunctionTok{titlePanel}\NormalTok{(}\StringTok{"OsPSY Rice Genes Expression Levels for GUS Staining"}\NormalTok{),}
+  \FunctionTok{sidebarLayout}\NormalTok{(}
+    \FunctionTok{sidebarPanel}\NormalTok{(}
+      \FunctionTok{selectInput}\NormalTok{(}\StringTok{""}\NormalTok{, }\StringTok{"Gene:"}\NormalTok{,}
+                  \AttributeTok{choices =} \FunctionTok{unique}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{cyl),}
+                  \AttributeTok{selected =} \DecValTok{4}\NormalTok{)}
+\NormalTok{    ),}
+    \FunctionTok{mainPanel}\NormalTok{(}
+      \FunctionTok{plotOutput}\NormalTok{(}\StringTok{"mpgPlot"}\NormalTok{)}
+\NormalTok{    )}
+\NormalTok{  )}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datasets }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}
+  \StringTok{"mtcars"} \OtherTok{=}\NormalTok{ mtcars,}
+  \StringTok{"iris"} \OtherTok{=}\NormalTok{ iris,}
+  \StringTok{"ToothGrowth"} \OtherTok{=}\NormalTok{ ToothGrowth}
+\NormalTok{)}
+
+\NormalTok{ui }\OtherTok{\textless{}{-}} \FunctionTok{navbarPage}\NormalTok{(}\StringTok{"Multi{-}Dataset Explorer"}\NormalTok{,}
+                 
+  \CommentTok{\# One tab per dataset}
+  \FunctionTok{lapply}\NormalTok{(}\FunctionTok{names}\NormalTok{(datasets), }\ControlFlowTok{function}\NormalTok{(dataset\_name) \{}
+    \FunctionTok{tabPanel}\NormalTok{(dataset\_name,}
+      \FunctionTok{sidebarLayout}\NormalTok{(}
+        \FunctionTok{sidebarPanel}\NormalTok{(}
+          \FunctionTok{selectInput}\NormalTok{(}
+            \AttributeTok{inputId =} \FunctionTok{paste0}\NormalTok{(dataset\_name, }\StringTok{"\_xvar"}\NormalTok{),}
+            \AttributeTok{label =} \StringTok{"Select X{-}axis Variable:"}\NormalTok{,}
+            \AttributeTok{choices =} \FunctionTok{names}\NormalTok{(datasets[[dataset\_name]])}
+\NormalTok{          ),}
+          \FunctionTok{uiOutput}\NormalTok{(}\AttributeTok{outputId =} \FunctionTok{paste0}\NormalTok{(dataset\_name, }\StringTok{"\_range\_ui"}\NormalTok{))}
+\NormalTok{        ),}
+        \FunctionTok{mainPanel}\NormalTok{(}
+          \FunctionTok{plotOutput}\NormalTok{(}\AttributeTok{outputId =} \FunctionTok{paste0}\NormalTok{(dataset\_name, }\StringTok{"\_plot"}\NormalTok{)),}
+          \FunctionTok{verbatimTextOutput}\NormalTok{(}\AttributeTok{outputId =} \FunctionTok{paste0}\NormalTok{(dataset\_name, }\StringTok{"\_summary"}\NormalTok{))}
+\NormalTok{        )}
+\NormalTok{      )}
+\NormalTok{    )}
+\NormalTok{  \})}
+\NormalTok{)}
+
+\NormalTok{server }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+  
+  \FunctionTok{lapply}\NormalTok{(}\FunctionTok{names}\NormalTok{(datasets), }\ControlFlowTok{function}\NormalTok{(dataset\_name) \{}
+\NormalTok{    data }\OtherTok{\textless{}{-}}\NormalTok{ datasets[[dataset\_name]]}
+    
+    \CommentTok{\# Dynamically create range filter for numeric variables}
+\NormalTok{    output[[}\FunctionTok{paste0}\NormalTok{(dataset\_name, }\StringTok{"\_range\_ui"}\NormalTok{)]] }\OtherTok{\textless{}{-}} \FunctionTok{renderUI}\NormalTok{(\{}
+\NormalTok{      xvar }\OtherTok{\textless{}{-}}\NormalTok{ input[[}\FunctionTok{paste0}\NormalTok{(dataset\_name, }\StringTok{"\_xvar"}\NormalTok{)]]}
+      \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(xvar) }\SpecialCharTok{\&\&} \FunctionTok{is.numeric}\NormalTok{(data[[xvar]])) \{}
+\NormalTok{        rng }\OtherTok{\textless{}{-}} \FunctionTok{range}\NormalTok{(data[[xvar]], }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+        \FunctionTok{sliderInput}\NormalTok{(}
+          \AttributeTok{inputId =} \FunctionTok{paste0}\NormalTok{(dataset\_name, }\StringTok{"\_range"}\NormalTok{),}
+          \AttributeTok{label =} \FunctionTok{paste}\NormalTok{(}\StringTok{"Filter"}\NormalTok{, xvar, }\StringTok{"range:"}\NormalTok{),}
+          \AttributeTok{min =}\NormalTok{ rng[}\DecValTok{1}\NormalTok{], }\AttributeTok{max =}\NormalTok{ rng[}\DecValTok{2}\NormalTok{],}
+          \AttributeTok{value =}\NormalTok{ rng}
+\NormalTok{        )}
+\NormalTok{      \} }\ControlFlowTok{else}\NormalTok{ \{}
+        \FunctionTok{helpText}\NormalTok{(}\StringTok{"Range filter only available for numeric variables."}\NormalTok{)}
+\NormalTok{      \}}
+\NormalTok{    \})}
+    
+    \CommentTok{\# Plot}
+\NormalTok{    output[[}\FunctionTok{paste0}\NormalTok{(dataset\_name, }\StringTok{"\_plot"}\NormalTok{)]] }\OtherTok{\textless{}{-}} \FunctionTok{renderPlot}\NormalTok{(\{}
+\NormalTok{      xvar }\OtherTok{\textless{}{-}}\NormalTok{ input[[}\FunctionTok{paste0}\NormalTok{(dataset\_name, }\StringTok{"\_xvar"}\NormalTok{)]]}
+\NormalTok{      range\_input }\OtherTok{\textless{}{-}}\NormalTok{ input[[}\FunctionTok{paste0}\NormalTok{(dataset\_name, }\StringTok{"\_range"}\NormalTok{)]]}
+      
+      \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{is.null}\NormalTok{(xvar)) }\FunctionTok{return}\NormalTok{(}\ConstantTok{NULL}\NormalTok{)}
+      
+\NormalTok{      filtered\_data }\OtherTok{\textless{}{-}}\NormalTok{ data}
+      \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(range\_input) }\SpecialCharTok{\&\&} \FunctionTok{is.numeric}\NormalTok{(data[[xvar]])) \{}
+\NormalTok{        filtered\_data }\OtherTok{\textless{}{-}}\NormalTok{ filtered\_data }\SpecialCharTok{\%\textgreater{}\%}
+          \FunctionTok{filter}\NormalTok{(data[[xvar]] }\SpecialCharTok{\textgreater{}=}\NormalTok{ range\_input[}\DecValTok{1}\NormalTok{] }\SpecialCharTok{\&}\NormalTok{ data[[xvar]] }\SpecialCharTok{\textless{}=}\NormalTok{ range\_input[}\DecValTok{2}\NormalTok{])}
+\NormalTok{      \}}
+      
+      \FunctionTok{ggplot}\NormalTok{(filtered\_data, }\FunctionTok{aes\_string}\NormalTok{(}\AttributeTok{x =}\NormalTok{ xvar)) }\SpecialCharTok{+}
+        \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{fill =} \StringTok{"steelblue"}\NormalTok{) }\SpecialCharTok{+}
+        \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+        \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =}\NormalTok{ xvar, }\AttributeTok{title =} \FunctionTok{paste}\NormalTok{(dataset\_name, }\StringTok{"{-}"}\NormalTok{, xvar))}
+\NormalTok{    \})}
+    
+    \CommentTok{\# Summary}
+\NormalTok{    output[[}\FunctionTok{paste0}\NormalTok{(dataset\_name, }\StringTok{"\_summary"}\NormalTok{)]] }\OtherTok{\textless{}{-}} \FunctionTok{renderPrint}\NormalTok{(\{}
+      \FunctionTok{summary}\NormalTok{(data)}
+\NormalTok{    \})}
+\NormalTok{  \})}
+\NormalTok{\}}
+
+\FunctionTok{shinyApp}\NormalTok{(}\AttributeTok{ui =}\NormalTok{ ui, }\AttributeTok{server =}\NormalTok{ server)}
+\end{Highlighting}
+\end{Shaded}
+
+
+\end{document}
