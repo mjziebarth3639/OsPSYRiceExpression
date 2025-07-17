@@ -16,7 +16,6 @@ runtime: shiny
 ```{r setup, include=FALSE, EVAL = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_chunk$set(eval = FALSE)
-knitr::opts_knit$set(root.dir = "/Users/mayaziebarth/Desktop/Ronald Lab/rice_app/rice")
 ```
 
 ```{r}
@@ -34,10 +33,6 @@ library(shinydashboard)
 library(bslib)
 library(shinythemes)
 library(thematic)
-```
-
-```{r}
-library(bslib)
 ```
 
 
