@@ -2,14 +2,7 @@
 title: "rice genes"
 author: "Maya Ziebarth"
 date: "2025-07-08"
-output: 
-  html_notebook: 
-    toc: true
-    css: www/reproductivestages.png
-  html_document:
-    theme: spacelab
-    toc: yes
-    toc_float: yes
+output:html_document
 runtime: shiny
 ---
 
@@ -33,6 +26,7 @@ library(shinydashboard)
 library(bslib)
 library(shinythemes)
 library(thematic)
+library(rsconnect)
 ```
 
 
@@ -102,7 +96,6 @@ OsPSYR1 %>%
 
 ```{r}
 json_string2 <- '[{"name":"Seedling_Root_Rep1","value":"1691.76"},{"name":"Seedling_Root_Rep2","value":"1613.14"},{"name":"Seedling_Root_Rep3","value":"1472.27"},{"name":"MatureLeaf_Rep1","value":"241.107"},{"name":"MatureLeaf_Rep2","value":"267.32"},{"name":"MatureLeaf_Rep3","value":"574.511"},{"name":"YoungLeaf_Rep1","value":"928.539"},{"name":"YoungLeaf_Rep2","value":"956.677"},{"name":"YoungLeaf_Rep3","value":"894.605"},{"name":"SAM_Rep1","value":"999.701"},{"name":"SAM_Rep2","value":"975.001"},{"name":"SAM_Rep3","value":"857.725"},{"name":"YoungInflorescence_Rep1","value":"4020.89"},{"name":"YoungInflorescence_Rep2","value":"2410.54"},{"name":"YoungInflorescence_Rep3","value":"2858.52"},{"name":"InflorescenceP2_Rep1","value":"2137.13"},{"name":"InflorescenceP2_Rep2","value":"2267.71"},{"name":"InflorescenceP2_Rep3","value":"2276.46"},{"name":"InflorescenceP3_Rep1","value":"4046.53"},{"name":"InflorescenceP3_Rep2","value":"3618.31"},{"name":"InflorescenceP3_Rep3","value":"4421.7"},{"name":"InflorescenceP4_Rep1","value":"4433.8"},{"name":"InflorescenceP4_Rep2","value":"4145.5"},{"name":"InflorescenceP4_Rep3","value":"4889.35"},{"name":"InflorescenceP5_Rep1","value":"2523.14"},{"name":"InflorescenceP5_Rep2","value":"2429.34"},{"name":"InflorescenceP5_Rep3","value":"2282.03"},{"name":"InflorescenceP6_Rep1","value":"1733.76"},{"name":"InflorescenceP6_Rep2","value":"1823.38"},{"name":"InflorescenceP6_Rep3","value":"1736.75"},{"name":"Seed_S1_Rep1","value":"2381.32"},{"name":"Seed_S1_Rep2","value":"2697.48"},{"name":"Seed_S1_Rep3","value":"2712.98"},{"name":"Seed_S2_Rep1","value":"2037.99"},{"name":"Seed_S2_Rep2","value":"1696.04"},{"name":"Seed_S2_Rep3","value":"2037.93"},{"name":"Seed_S3_Rep1","value":"1262.18"},{"name":"Seed_S3_Rep2","value":"1408.55"},{"name":"Seed_S3_Rep3","value":"1731.29"},{"name":"Seed_S4_Rep1","value":"1036.33"},{"name":"Seed_S4_Rep2","value":"904.301"},{"name":"Seed_S4_Rep3","value":"1113.98"},{"name":"Seed_S5_Rep1","value":"712.078"},{"name":"Seed_S5_Rep2","value":"766.468"},{"name":"Seed_S5_Rep3","value":"697.543"},{"name":"Stigma_Rep1","value":"1738"},{"name":"Stigma_Rep2","value":"1634.51"},{"name":"Stigma_Rep3","value":"1553.69"},{"name":"Ovary_Rep1","value":"1246.51"},{"name":"Ovary_Rep2","value":"1279.12"},{"name":"Ovary_Rep3","value":"1246.23"},{"name":"SuspensionCell_Rep1","value":"846.182"},{"name":"Shoot_Rep1","value":"363.016"},{"name":"Root_Rep1","value":"1197.82"},{"name":"Anther_Rep1","value":"413.025"},{"name":"Embryo_Rep1","value":"900.979"},{"name":"Endosperm_Rep1","value":"265.912"},{"name":"5d-seed_Rep1","value":"287.304"}, {"name":"Aerobic_coleoptile_Rep1","value":"1448.79"},{"name":"Aerobic_coleoptile_Rep2","value":"1283.9"},{"name":"Anoxic_coleoptile_Rep1","value":"789.858"},{"name":"Anoxic_coleoptile_Rep2","value":"857.482"}, {"name":"RICE_CTRL","value":"1070.69"}]'
-
 ospsyr2JSON <- fromJSON(json_string2)
 ```
 
