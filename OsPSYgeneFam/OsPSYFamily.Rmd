@@ -54,20 +54,21 @@ OsPSYR1$value <- as.numeric(OsPSYR1$value)
 ### Leaf 
 ```{r}
 json_stringR1L <- '[{"name":"R1","value":"1.90671"},{"name":"RICE_CTRL","value":"0.647706"},{"name":"R2","value":"2.12788"},{"name":"R3","value":"0.908569"},{"name":"R4","value":"0.944498"},{"name":"R5","value":"0.341341"},{"name":"R6","value":"0.16714"},{"name":"R7","value":"0.143236"},{"name":"R8","value":"0.154641"},{"name":"R9","value":"0.131562"},{"name":"R10","value":"0.10658"},{"name":"R11","value":"0.192609"}]'
-ospsyr1leafJSON <- fromJSON(json_stringR1L)
-```
+OsPSYR1leaf <- fromJSON(json_stringR1L)
 
-```{r}
-OsPSYR1leaf <- ospsyr1leafJSON %>% 
-  sepe
+OsPSYR1leaf$value <- as.numeric(OsPSYR1leaf$value)
 ```
-
 
 
 ### Root
 ```{r}
 json_stringR1R <- '[{"name":"EN_1","value":"0"},{"name":"EN_2","value":"0"},{"name":"EN_3","value":"0"},{"name":"Med_CTRL","value":"0"},{"name":"X35S_1","value":"0"},{"name":"X35S_2","value":"0"},{"name":"X35S_3","value":"0"},{"name":"MZ_1","value":"0"},{"name":"MZ_2","value":"0"},{"name":"MZ_3","value":"0"},{"name":"V_1","value":"0"},{"name":"V_2","value":"0"},{"name":"V_3","value":"0"},{"name":"MCO_1A","value":"0"},{"name":"MCO_1B","value":"0.657433"},{"name":"MCO_2A","value":"0"},{"name":"MCO_2B","value":"0"}]'
 ospsyr1rootJSON <- fromJSON(json_stringR1R)
+```
+
+```{r}
+OsPSYR1root <- ospsyr1rootJSON %>% 
+  separate(name, into)
 ```
 
 

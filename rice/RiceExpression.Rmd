@@ -2,7 +2,7 @@
 title: "rice genes"
 author: "Maya Ziebarth"
 date: "2025-07-08"
-output:html_document
+output: html_document
 runtime: shiny
 ---
 
@@ -300,7 +300,7 @@ my_theme <- bs_theme(
 )
 
 addResourcePath("prefix", "www")
-
+3
 ui <- fluidPage(
   theme = my_theme,
     tags$head(
