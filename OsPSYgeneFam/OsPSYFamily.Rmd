@@ -34,7 +34,7 @@ library(thematic)
 library(rsconnect)
 ```
 
-# Loading All Data 
+# Loading All Data and Converting 
 
 ## OsPSYR1	LOC_Os07g05740
 ### Main Stages 
@@ -68,7 +68,9 @@ ospsyr1rootJSON <- fromJSON(json_stringR1R)
 
 ```{r}
 OsPSYR1root <- ospsyr1rootJSON %>% 
-  separate(name, into)
+  separate(name, into=c("name", "Sample #"), sep="_")
+
+OsPSYR1root$value <- as.numeric(OsPSYR1root$value)
 ```
 
 
@@ -80,34 +82,153 @@ json_stringR2 <- '[{"name":"Seedling_Root_Rep1","value":"1691.76"},{"name":"Seed
 ospsyr2JSON <- fromJSON(json_stringR2)
 ```
 
+```{r}
+OsPSYR2 <- ospsyr2JSON %>% 
+  separate(name, into=c("name", "Sample #"), sep="_Rep") 
+
+OsPSYR2$value <- as.numeric(OsPSYR2$value)
+```
 
 ### Leaf 
+```{r}
+json_stringR2L <- '[{"name":"R1","value":"1.45633"},{"name":"RICE_CTRL","value":"0.627036"},{"name":"R2","value":"1.49258"},{"name":"R3","value":"0.718278"},{"name":"R4","value":"0.891138"},{"name":"R5","value":"0.34235"},{"name":"R6","value":"0.261122"},{"name":"R7","value":"0.206563"},{"name":"R8","value":"0.261727"},{"name":"R9","value":"0.319727"},{"name":"R10","value":"0.320686"},{"name":"R11","value":"0.626901"}]'
+OsPSYR2leaf <- fromJSON(json_stringR2L)
+
+OsPSYR2leaf$value <- as.numeric(OsPSYR2leaf$value)
+```
+
 
 ### Root
+```{r}
+json_stringR2R <- '[{"name":"EN_1","value":"5.03828"},{"name":"EN_2","value":"2.73193"},{"name":"EN_3","value":"0"},{"name":"Med_CTRL","value":"3.33534"},{"name":"X35S_1","value":"10.4487"},{"name":"X35S_2","value":"10.5462"},{"name":"X35S_3","value":"12.6099"},{"name":"MZ_1","value":"7.21243"},{"name":"MZ_2","value":"15.0639"},{"name":"MZ_3","value":"9.33031"},{"name":"V_1","value":"0"},{"name":"V_2","value":"0"},{"name":"V_3","value":"0"},{"name":"MCO_1A","value":"0.706237"},{"name":"MCO_1B","value":"0"},{"name":"MCO_2A","value":"1.39683"},{"name":"MCO_2B","value":"3.93875"}]'
+ospsyr2rootJSON <- fromJSON(json_stringR2R)
+```
+
+```{r}
+OsPSYR2root <- ospsyr2rootJSON %>% 
+  separate(name, into=c("name", "Sample #"), sep="_")
+
+OsPSYR2root$value <- as.numeric(OsPSYR2root$value)
+```
 
 
 ## OsPSY1	LOC_Os05g40850
 ### Main Stages 
+```{r}
+json_string1 <- ''
+
+ospsy1JSON <- fromJSON(json_string1)
+```
+
+```{r}
+OsPSY1 <- ospsy1JSON %>% 
+    separate(name, into=c("name", "Sample #"), sep="_Rep") 
+
+OsPSY1$value <- as.numeric(OsPSY1$value)
+```
+
 
 ### Leaf 
 
-### Root
+```{r}
+json_string1L <- ''
+OsPSY1leaf <- fromJSON(json_string1L)
 
+OsPSY1leaf$value <- as.numeric(OsPSY1leaf$value)
+```
+
+
+### Root
+```{r}
+json_string1R <- ''
+ospsy1rootJSON <- fromJSON(json_string1R)
+```
+
+```{r}
+OsPSY1root <- ospsyr1rootJSON %>% 
+  separate(name, into=c("name", "Sample #"), sep="_")
+
+OsPSY1root$value <- as.numeric(OsPSY1root$value)
+```
 
 ## OsPSY2	LOC_Os05g40890
 ### Main Stages 
+```{r}
+json_string2 <- ''
+
+ospsy2JSON <- fromJSON(json_string2)
+```
+
+```{r}
+OsPSY2 <- ospsy2JSON %>% 
+    separate(name, into=c("name", "Sample #"), sep="_Rep") 
+
+OsPSY2$value <- as.numeric(OsPSY2$value)
+```
+
 
 ### Leaf 
 
+```{r}
+json_string2L <- ''
+OsPSY2leaf <- fromJSON(json_string2L)
+
+OsPSY2leaf$value <- as.numeric(OsPSY2leaf$value)
+```
+
+
 ### Root
+```{r}
+json_string2R <- ''
+ospsy2rootJSON <- fromJSON(json_string2R)
+```
+
+```{r}
+OsPSY2root <- ospsyr2rootJSON %>% 
+  separate(name, into=c("name", "Sample #"), sep="_")
+
+OsPSY2root$value <- as.numeric(OsPSY2root$value)
+```
 
 
 ## OsPSY3	LOC_Os01g16980
 ### Main Stages 
+```{r}
+json_string3 <- ''
+
+ospsy3JSON <- fromJSON(json_string3)
+```
+
+```{r}
+OsPSY3 <- ospsy3JSON %>% 
+    separate(name, into=c("name", "Sample #"), sep="_Rep") 
+
+OsPSY3$value <- as.numeric(OsPSY3$value)
+```
+
 
 ### Leaf 
 
+```{r}
+json_string3L <- ''
+OsPSY3leaf <- fromJSON(json_string3L)
+
+OsPSY3leaf$value <- as.numeric(OsPSY3leaf$value)
+```
+
+
 ### Root
+```{r}
+json_string3R <- ''
+ospsy3rootJSON <- fromJSON(json_string3R)
+```
+
+```{r}
+OsPSY3root <- ospsyr3rootJSON %>% 
+  separate(name, into=c("name", "Sample #"), sep="_")
+
+OsPSY3root$value <- as.numeric(OsPSY3root$value)
+```
 
 
 ## OsPSY4	LOC_Os01g59970
@@ -119,57 +240,229 @@ ospsy4JSON <- fromJSON(json_string4)
 
 
 ### Leaf 
+```{r}
+json_string4L <- ''
+OsPSY4leaf <- fromJSON(json_string4L)
+
+OsPSY4leaf$value <- as.numeric(OsPSY4leaf$value)
+```
+
 
 ### Root
+```{r}
+json_string4R <- ''
+ospsy4rootJSON <- fromJSON(json_string4R)
+```
+
+```{r}
+OsPSY4root <- ospsyr4rootJSON %>% 
+  separate(name, into=c("name", "Sample #"), sep="_")
+
+OsPSY4root$value <- as.numeric(OsPSY4root$value)
+```
 
 
 ## OsPSY5	LOC_Os11g38790
 ### Main Stages 
+```{r}
+json_string5 <- ''
+
+ospsy5JSON <- fromJSON(json_string5)
+```
+
+```{r}
+OsPSY5 <- ospsy5JSON %>% 
+    separate(name, into=c("name", "Sample #"), sep="_Rep") 
+
+OsPSY5$value <- as.numeric(OsPSY5$value)
+```
+
 
 ### Leaf 
 
+```{r}
+json_string5L <- ''
+OsPSY5leaf <- fromJSON(json_string5L)
+
+OsPSY5leaf$value <- as.numeric(OsPSY5leaf$value)
+```
+
+
 ### Root
+```{r}
+json_string5R <- ''
+ospsy5rootJSON <- fromJSON(json_string5R)
+```
+
+```{r}
+OsPSY5root <- ospsyr5rootJSON %>% 
+  separate(name, into=c("name", "Sample #"), sep="_")
+
+OsPSY5root$value <- as.numeric(OsPSY5root$value)
+```
 
 
 ## OsPSY6	LOC_Os07g43770
 ### Main Stages 
+```{r}
+json_string6 <- ''
+
+ospsy6JSON <- fromJSON(json_string6)
+```
+
+```{r}
+OsPSY6 <- ospsy6JSON %>% 
+    separate(name, into=c("name", "Sample #"), sep="_Rep") 
+
+OsPSY6$value <- as.numeric(OsPSY6$value)
+```
+
 
 ### Leaf 
 
+```{r}
+json_string6L <- ''
+OsPSY6leaf <- fromJSON(json_string6L)
+
+OsPSY6leaf$value <- as.numeric(OsPSY6leaf$value)
+```
+
+
 ### Root
+```{r}
+json_string6R <- ''
+ospsy6rootJSON <- fromJSON(json_string6R)
+```
+
+```{r}
+OsPSY6root <- ospsyr6rootJSON %>% 
+  separate(name, into=c("name", "Sample #"), sep="_")
+
+OsPSY6root$value <- as.numeric(OsPSY6root$value)
+```
 
 
 ## OsPSY7	LOC_Os05g46470
 ### Main Stages 
+```{r}
+json_string7 <- ''
+
+ospsy7JSON <- fromJSON(json_string7)
+```
+
+```{r}
+OsPSY7 <- ospsy7JSON %>% 
+    separate(name, into=c("name", "Sample #"), sep="_Rep") 
+
+OsPSY7$value <- as.numeric(OsPSY7$value)
+```
+
 
 ### Leaf 
+```{r}
+json_string7L <- ''
+OsPSY7leaf <- fromJSON(json_string7L)
+
+OsPSY7leaf$value <- as.numeric(OsPSY7leaf$value)
+```
+
 
 ### Root
+```{r}
+json_string7R <- ''
+ospsy7rootJSON <- fromJSON(json_string7R)
+```
+
+```{r}
+OsPSY7root <- ospsyr7rootJSON %>% 
+  separate(name, into=c("name", "Sample #"), sep="_")
+
+OsPSY7root$value <- as.numeric(OsPSY7root$value)
+```
 
 
 ## OsPSY8	LOC_Os01g15970
-
 ### Main Stages 
+```{r}
+json_string8 <- ''
+
+ospsy8JSON <- fromJSON(json_string8)
+```
+
+```{r}
+OsPSY8 <- ospsy8JSON %>% 
+    separate(name, into=c("name", "Sample #"), sep="_Rep") 
+
+OsPSY8$value <- as.numeric(OsPSY8$value)
+```
+
 
 ### Leaf 
 
+```{r}
+json_string8L <- ''
+OsPSY8leaf <- fromJSON(json_string8L)
+
+OsPSY8leaf$value <- as.numeric(OsPSY8leaf$value)
+```
+
+
 ### Root
+```{r}
+json_string8R <- ''
+ospsy8rootJSON <- fromJSON(json_string8R)
+```
+
+```{r}
+OsPSY8root <- ospsyr8rootJSON %>% 
+  separate(name, into=c("name", "Sample #"), sep="_")
+
+OsPSY8root$value <- as.numeric(OsPSY8root$value)
+```
+
 
 ## OsTPST	LOC_Os06g06370
-
 ### Main Stages 
+```{r}
+json_string9 <- ''
+
+ospsy9JSON <- fromJSON(json_string9)
+```
+
+```{r}
+OsPSY9 <- ospsy9JSON %>% 
+    separate(name, into=c("name", "Sample #"), sep="_Rep") 
+
+OsPSY9$value <- as.numeric(OsPSY9$value)
+```
+
 
 ### Leaf 
 
+```{r}
+json_string9L <- ''
+OsPSY9leaf <- fromJSON(json_string9L)
+
+OsPSY9leaf$value <- as.numeric(OsPSY9leaf$value)
+```
+
+
 ### Root
+```{r}
+json_string9R <- ''
+ospsy9rootJSON <- fromJSON(json_string9R)
+```
+
+```{r}
+OsPSY9root <- ospsyr9rootJSON %>% 
+  separate(name, into=c("name", "Sample #"), sep="_")
+
+OsPSY9root$value <- as.numeric(OsPSY9root$value)
+```
 
 
 # Combining data
-### Main Stages 
 
-### Leaf 
-
-### Root
 
 
 
