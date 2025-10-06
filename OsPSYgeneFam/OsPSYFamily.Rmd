@@ -115,7 +115,9 @@ OsPSYR2root$value <- as.numeric(OsPSYR2root$value)
 ## OsPSY1	LOC_Os05g40850
 ### Main Stages 
 ```{r}
-json_string1 <- ''
+json_string1 <- '[{"name":"Seedling_Root_Rep1","value":"19.6382"},{"name":"Seedling_Root_Rep2","value":"29.703"},{"name":"Seedling_Root_Rep3","value":"51.7352"},{"name":"RICE_CTRL","value":"43.0861"},{"name":"MatureLeaf_Rep1","value":"13.3922"},{"name":"MatureLeaf_Rep2","value":"67.3846"},{"name":"MatureLeaf_Rep3","value":"32.9525"},{"name":"YoungLeaf_Rep1","value":"59.7473"},{"name":"YoungLeaf_Rep2","value":"10.0826"},{"name":"YoungLeaf_Rep3","value":"39.6208"},{"name":"SAM_Rep1","value":"13.1532"},{"name":"SAM_Rep2","value":"69.3323"},{"name":"SAM_Rep3","value":"3.79389"},{"name":"YoungInflorescence_Rep1","value":"22.8876"},{"name":"YoungInflorescence_Rep2","value":"39.0505"},{"name":"YoungInflorescence_Rep3","value":"5.71035"},{"name":"InflorescenceP2_Rep1","value":"18.0979"},{"name":"InflorescenceP2_Rep2","value":"4.46592"},{"name":"InflorescenceP2_Rep3","value":"33.1071"},{"name":"InflorescenceP3_Rep1","value":"43.8352"},{"name":"InflorescenceP3_Rep2","value":"43.6068"},{"name":"InflorescenceP3_Rep3","value":"23.6582"},{"name":"InflorescenceP4_Rep1","value":"13.4472"},{"name":"InflorescenceP4_Rep2","value":"5.814"},{"name":"InflorescenceP4_Rep3","value":"3.80859"},{"name":"InflorescenceP5_Rep1","value":"20.012"},{"name":"InflorescenceP5_Rep2","value":"43.0861"},{"name":"InflorescenceP5_Rep3","value":"48.4936"},{"name":"InflorescenceP6_Rep1","value":"176.491"},{"name":"InflorescenceP6_Rep2","value":"124.569"},{"name":"InflorescenceP6_Rep3","value":"134.034"},{"name":"Seed_S1_Rep1","value":"203.767"},{"name":"Seed_S1_Rep2","value":"172.015"},{"name":"Seed_S1_Rep3","value":"219.401"},{"name":"Seed_S2_Rep1","value":"970.612"},{"name":"Seed_S2_Rep2","value":"323.624"},{"name":"Seed_S2_Rep3","value":"1298.5"},{"name":"Seed_S3_Rep1","value":"470.782"},{"name":"Seed_S3_Rep2","value":"98.1"},{"name":"Seed_S3_Rep3","value":"23.6535"},{"name":"Seed_S4_Rep1","value":"185.143"},{"name":"Seed_S4_Rep2","value":"80.1157"},{"name":"Seed_S4_Rep3","value":"76.4539"},{"name":"Seed_S5_Rep1","value":"8.71831"},{"name":"Seed_S5_Rep2","value":"86.2467"},{"name":"Seed_S5_Rep3","value":"28.481"},
+{"name":"Stigma_Rep1","value":"68.0444"},{"name":"Stigma_Rep2","value":"13.1102"},{"name":"Stigma_Rep3","value":"69.9799"},{"name":"RICE_CTRL","value":"43.0861"},{"name":"Ovary_Rep1","value":"114.833"},{"name":"Ovary_Rep2","value":"97.4987"},{"name":"Ovary_Rep3","value":"128.837"},{"name":"SuspensionCell_Rep1","value":"24.0528"},{"name":"Shoot_Rep1","value":"72.8781"},{"name":"Root_Rep1","value":"87.8427"},{"name":"Anther_Rep1","value":"97.6423"},{"name":"Embryo_Rep1","value":"37.1067"},{"name":"Endosperm_Rep1","value":"175.651"},{"name":"5d-seed_Rep1","value":"74.8226"}, 
+{"name":"Aerobic_coleoptile_Rep1","value":"82.1375"},{"name":"Aerobic_coleoptile_Rep2","value":"9.92799"},{"name":"RICE_CTRL","value":"43.0861"},{"name":"Anoxic_coleoptile_Rep1","value":"28.5508"},{"name":"Anoxic_coleoptile_Rep2","value":"80.6235"}]'
 
 ospsy1JSON <- fromJSON(json_string1)
 ```
@@ -131,7 +133,7 @@ OsPSY1$value <- as.numeric(OsPSY1$value)
 ### Leaf 
 
 ```{r}
-json_string1L <- ''
+json_string1L <- '[{"name":"R1","value":"0"},{"name":"RICE_CTRL","value":"0"},{"name":"R2","value":"0"},{"name":"R3","value":"0"},{"name":"R4","value":"0"},{"name":"R5","value":"0"},{"name":"R6","value":"0"},{"name":"R7","value":"0"},{"name":"R8","value":"0"},{"name":"R9","value":"0"},{"name":"R10","value":"0"},{"name":"R11","value":"0"}]'
 OsPSY1leaf <- fromJSON(json_string1L)
 
 OsPSY1leaf$value <- as.numeric(OsPSY1leaf$value)
@@ -140,7 +142,7 @@ OsPSY1leaf$value <- as.numeric(OsPSY1leaf$value)
 
 ### Root
 ```{r}
-json_string1R <- ''
+json_string1R <- '[{"name":"EN_1","value":"0"},{"name":"EN_2","value":"0"},{"name":"EN_3","value":"0"},{"name":"Med_CTRL","value":"0"},{"name":"X35S_1","value":"0.610426"},{"name":"X35S_2","value":"0"},{"name":"X35S_3","value":"0"},{"name":"MZ_1","value":"0"},{"name":"MZ_2","value":"0.528029"},{"name":"MZ_3","value":"1.36272"},{"name":"V_1","value":"0"},{"name":"V_2","value":"0"},{"name":"V_3","value":"0"},{"name":"MCO_1A","value":"0"},{"name":"MCO_1B","value":"0.608991"},{"name":"MCO_2A","value":"0"},{"name":"MCO_2B","value":"0"}]'
 ospsy1rootJSON <- fromJSON(json_string1R)
 ```
 
@@ -154,7 +156,9 @@ OsPSY1root$value <- as.numeric(OsPSY1root$value)
 ## OsPSY2	LOC_Os05g40890
 ### Main Stages 
 ```{r}
-json_string2 <- ''
+json_string2 <- '[{"name":"Seedling_Root_Rep1","value":"151.58"},{"name":"Seedling_Root_Rep2","value":"166.358"},{"name":"Seedling_Root_Rep3","value":"144.585"},{"name":"RICE_CTRL","value":"151.58"},{"name":"MatureLeaf_Rep1","value":"304.251"},{"name":"MatureLeaf_Rep2","value":"422.299"},{"name":"MatureLeaf_Rep3","value":"500.829"},{"name":"YoungLeaf_Rep1","value":"646.271"},{"name":"YoungLeaf_Rep2","value":"734.353"},{"name":"YoungLeaf_Rep3","value":"493.968"},{"name":"SAM_Rep1","value":"76.1871"},{"name":"SAM_Rep2","value":"101.354"},{"name":"SAM_Rep3","value":"9.97501"},{"name":"YoungInflorescence_Rep1","value":"56.6438"},{"name":"YoungInflorescence_Rep2","value":"6.5603"},{"name":"YoungInflorescence_Rep3","value":"24.4946"},{"name":"InflorescenceP2_Rep1","value":"10.2058"},{"name":"InflorescenceP2_Rep2","value":"7.82495"},{"name":"InflorescenceP2_Rep3","value":"20.8417"},{"name":"InflorescenceP3_Rep1","value":"55.5147"},{"name":"InflorescenceP3_Rep2","value":"73.3902"},{"name":"InflorescenceP3_Rep3","value":"14.5985"},{"name":"InflorescenceP4_Rep1","value":"8.37275"},{"name":"InflorescenceP4_Rep2","value":"58.8601"},{"name":"InflorescenceP4_Rep3","value":"49.7657"},{"name":"InflorescenceP5_Rep1","value":"19.4589"},{"name":"InflorescenceP5_Rep2","value":"13.6312"},{"name":"InflorescenceP5_Rep3","value":"56.5299"},{"name":"InflorescenceP6_Rep1","value":"247.342"},{"name":"InflorescenceP6_Rep2","value":"204.867"},{"name":"InflorescenceP6_Rep3","value":"202.945"},{"name":"Seed_S1_Rep1","value":"39.7988"},{"name":"Seed_S1_Rep2","value":"58.1043"},{"name":"Seed_S1_Rep3","value":"60.5761"},{"name":"Seed_S2_Rep1","value":"225.972"},{"name":"Seed_S2_Rep2","value":"152.987"},{"name":"Seed_S2_Rep3","value":"238.131"},{"name":"Seed_S3_Rep1","value":"206.542"},{"name":"Seed_S3_Rep2","value":"291.851"},{"name":"Seed_S3_Rep3","value":"303.992"},{"name":"Seed_S4_Rep1","value":"471.026"},{"name":"Seed_S4_Rep2","value":"440.24"},{"name":"Seed_S4_Rep3","value":"712.837"},{"name":"Seed_S5_Rep1","value":"443.268"},{"name":"Seed_S5_Rep2","value":"299.674"},{"name":"Seed_S5_Rep3","value":"187.801"},
+{"name":"Stigma_Rep1","value":"335.845"},{"name":"Stigma_Rep2","value":"293.609"},{"name":"Stigma_Rep3","value":"306.962"},{"name":"RICE_CTRL","value":"151.58"},{"name":"Ovary_Rep1","value":"11.6768"},{"name":"Ovary_Rep2","value":"16.1367"},{"name":"Ovary_Rep3","value":"6.30669"},{"name":"SuspensionCell_Rep1","value":"502.004"},{"name":"Shoot_Rep1","value":"204.388"},{"name":"Root_Rep1","value":"141.342"},{"name":"Anther_Rep1","value":"156.787"},{"name":"Embryo_Rep1","value":"400.609"},{"name":"Endosperm_Rep1","value":"276.618"},{"name":"5d-seed_Rep1","value":"521.198"},
+{"name":"Aerobic_coleoptile_Rep1","value":"543.945"},{"name":"Aerobic_coleoptile_Rep2","value":"323.664"},{"name":"RICE_CTRL","value":"151.58"},{"name":"Anoxic_coleoptile_Rep1","value":"127.7"},{"name":"Anoxic_coleoptile_Rep2","value":"416.729"}]'
 
 ospsy2JSON <- fromJSON(json_string2)
 ```
@@ -170,7 +174,8 @@ OsPSY2$value <- as.numeric(OsPSY2$value)
 ### Leaf 
 
 ```{r}
-json_string2L <- ''
+json_string2L <- '[{"name":"R1","value":"2.75612"},{"name":"RICE_CTRL","value":"3.0208"},{"name":"R2","value":"3.16565"},{"name":"R3","value":"5.10707"},{"name":"R4","value":"5.93181"},{"name":"R5","value":"6.46529"},{"name":"R6","value":"2.1958"},{"name":"R7","value":"0.840263"},{"name":"R8","value":"0.982764"},{"name":"R9","value":"1.11479"},{"name":"R10","value":"1.7531"},{"name":"R11","value":"2.91614"}]'
+
 OsPSY2leaf <- fromJSON(json_string2L)
 
 OsPSY2leaf$value <- as.numeric(OsPSY2leaf$value)
@@ -179,7 +184,7 @@ OsPSY2leaf$value <- as.numeric(OsPSY2leaf$value)
 
 ### Root
 ```{r}
-json_string2R <- ''
+json_string2R <- '[{"name":"EN_1","value":"0.892418"},{"name":"EN_2","value":"0.9678"},{"name":"EN_3","value":"6.02849"},{"name":"Med_CTRL","value":"3.05651"},{"name":"X35S_1","value":"8.72237"},{"name":"X35S_2","value":"14.0837"},{"name":"X35S_3","value":"13.2517"},{"name":"MZ_1","value":"7.12132"},{"name":"MZ_2","value":"12.3814"},{"name":"MZ_3","value":"3.27742"},{"name":"V_1","value":"2.8356"},{"name":"V_2","value":"4.16898"},{"name":"V_3","value":"0"},{"name":"MCO_1A","value":"1.00075"},{"name":"MCO_1B","value":"1.47714"},{"name":"MCO_2A","value":"2.47417"},{"name":"MCO_2B","value":"1.67439"}]'
 ospsy2rootJSON <- fromJSON(json_string2R)
 ```
 
@@ -194,7 +199,9 @@ OsPSY2root$value <- as.numeric(OsPSY2root$value)
 ## OsPSY3	LOC_Os01g16980
 ### Main Stages 
 ```{r}
-json_string3 <- ''
+json_string3 <- '[{"name":"Seedling_Root_Rep1","value":"8.28875"},{"name":"Seedling_Root_Rep2","value":"1.32825"},{"name":"Seedling_Root_Rep3","value":"7.50935"},{"name":"RICE_CTRL","value":"20.9842"},{"name":"MatureLeaf_Rep1","value":"1270.5"},{"name":"MatureLeaf_Rep2","value":"1546.85"},{"name":"MatureLeaf_Rep3","value":"4029.35"},{"name":"YoungLeaf_Rep1","value":"107.21"},{"name":"YoungLeaf_Rep2","value":"427.852"},{"name":"YoungLeaf_Rep3","value":"375.88"},{"name":"SAM_Rep1","value":"1.48905"},{"name":"SAM_Rep2","value":"1.17553"},{"name":"SAM_Rep3","value":"6.84997"},{"name":"YoungInflorescence_Rep1","value":"25.8999"},{"name":"YoungInflorescence_Rep2","value":"16.8602"},{"name":"YoungInflorescence_Rep3","value":"5.07628"},{"name":"InflorescenceP2_Rep1","value":"4.66242"},{"name":"InflorescenceP2_Rep2","value":"13.2669"},{"name":"InflorescenceP2_Rep3","value":"18.3329"},{"name":"InflorescenceP3_Rep1","value":"51.4831"},{"name":"InflorescenceP3_Rep2","value":"93.5163"},{"name":"InflorescenceP3_Rep3","value":"117.053"},{"name":"InflorescenceP4_Rep1","value":"194.19"},{"name":"InflorescenceP4_Rep2","value":"390.119"},{"name":"InflorescenceP4_Rep3","value":"201.581"},{"name":"InflorescenceP5_Rep1","value":"88.4269"},{"name":"InflorescenceP5_Rep2","value":"98.1482"},{"name":"InflorescenceP5_Rep3","value":"92.0795"},{"name":"InflorescenceP6_Rep1","value":"778.816"},{"name":"InflorescenceP6_Rep2","value":"545.329"},{"name":"InflorescenceP6_Rep3","value":"524.772"},{"name":"Seed_S1_Rep1","value":"6783.1"},{"name":"Seed_S1_Rep2","value":"5685.71"},{"name":"Seed_S1_Rep3","value":"6821.84"},{"name":"Seed_S2_Rep1","value":"957.054"},{"name":"Seed_S2_Rep2","value":"1257.76"},{"name":"Seed_S2_Rep3","value":"924.457"},{"name":"Seed_S3_Rep1","value":"1041.56"},{"name":"Seed_S3_Rep2","value":"1470.43"},{"name":"Seed_S3_Rep3","value":"1438.39"},{"name":"Seed_S4_Rep1","value":"541.591"},{"name":"Seed_S4_Rep2","value":"441.285"},{"name":"Seed_S4_Rep3","value":"416.573"},{"name":"Seed_S5_Rep1","value":"150.653"},{"name":"Seed_S5_Rep2","value":"158.834"},{"name":"Seed_S5_Rep3","value":"148.341"},
+{"name":"Stigma_Rep1","value":"4.03998"},{"name":"Stigma_Rep2","value":"0.982888"},{"name":"Stigma_Rep3","value":"0.933441"},{"name":"RICE_CTRL","value":"20.9842"},{"name":"Ovary_Rep1","value":"44.7963"},{"name":"Ovary_Rep2","value":"39.4593"},{"name":"Ovary_Rep3","value":"9.49675"},{"name":"SuspensionCell_Rep1","value":"6.63497"},{"name":"Shoot_Rep1","value":"882.814"},{"name":"Root_Rep1","value":"24.2506"},{"name":"Anther_Rep1","value":"143.302"},{"name":"Embryo_Rep1","value":"6.65339"},{"name":"Endosperm_Rep1","value":"57.1563"},{"{name":"5d-seed_Rep1","value":"20.9842"},
+"name":"Aerobic_coleoptile_Rep1","value":"134.221"},{"name":"Aerobic_coleoptile_Rep2","value":"123.6"},{"name":"RICE_CTRL","value":"20.9842"},{"name":"Anoxic_coleoptile_Rep1","value":"32.3381"},{"name":"Anoxic_coleoptile_Rep2","value":"22.2906"}]'
 
 ospsy3JSON <- fromJSON(json_string3)
 ```
@@ -210,7 +217,8 @@ OsPSY3$value <- as.numeric(OsPSY3$value)
 ### Leaf 
 
 ```{r}
-json_string3L <- ''
+json_string3L <- '[{"name":"R1","value":"20.5006"},{"name":"RICE_CTRL","value":"49.6275"},{"name":"R2","value":"26.0257"},{"name":"R3","value":"27.6497"},{"name":"R4","value":"30.7305"},{"name":"R5","value":"45.9771"},{"name":"R6","value":"46.908"},{"name":"R7","value":"55.9183"},{"name":"R8","value":"72.2959"},{"name":"R9","value":"73.2478"},{"name":"R10","value":"65.917"},{"name":"R11","value":"80.7321"}]'
+
 OsPSY3leaf <- fromJSON(json_string3L)
 
 OsPSY3leaf$value <- as.numeric(OsPSY3leaf$value)
@@ -219,7 +227,8 @@ OsPSY3leaf$value <- as.numeric(OsPSY3leaf$value)
 
 ### Root
 ```{r}
-json_string3R <- ''
+json_string3R <- '[{"name":"EN_1","value":"0"},{"name":"EN_2","value":"0"},{"name":"EN_3","value":"0"},{"name":"Med_CTRL","value":"0"},{"name":"X35S_1","value":"2.80034"},{"name":"X35S_2","value":"0.471076"},{"name":"X35S_3","value":"1.35182"},{"name":"MZ_1","value":"0.322165"},{"name":"MZ_2","value":"0"},{"name":"MZ_3","value":"0"},{"name":"V_1","value":"0"},{"name":"V_2","value":"0.53014"},{"name":"V_3","value":"0"},{"name":"MCO_1A","value":"0"},{"name":"MCO_1B","value":"0"},{"name":"MCO_2A","value":"0"},{"name":"MCO_2B","value":"0"}]'
+
 ospsy3rootJSON <- fromJSON(json_string3R)
 ```
 
@@ -241,7 +250,7 @@ ospsy4JSON <- fromJSON(json_string4)
 
 ### Leaf 
 ```{r}
-json_string4L <- ''
+json_string4L <- '[{"name":"R1","value":"7.42033"},{"name":"RICE_CTRL","value":"21.3872"},{"name":"R2","value":"13.2002"},{"name":"R3","value":"7.06566"},{"name":"R4","value":"24.1855"},{"name":"R5","value":"22.0134"},{"name":"R6","value":"22.6398"},{"name":"R7","value":"30.4871"},{"name":"R8","value":"29.5319"},{"name":"R9","value":"25.4536"},{"name":"R10","value":"28.2049"},{"name":"R11","value":"25.0572"}]'
 OsPSY4leaf <- fromJSON(json_string4L)
 
 OsPSY4leaf$value <- as.numeric(OsPSY4leaf$value)
@@ -250,7 +259,7 @@ OsPSY4leaf$value <- as.numeric(OsPSY4leaf$value)
 
 ### Root
 ```{r}
-json_string4R <- ''
+json_string4R <- '[{"name":"EN_1","value":"0"},{"name":"EN_2","value":"2.51904"},{"name":"EN_3","value":"1.76267"},{"name":"Med_CTRL","value":"4.24651"},{"name":"X35S_1","value":"19.8195"},{"name":"X35S_2","value":"17.4112"},{"name":"X35S_3","value":"24.1847"},{"name":"MZ_1","value":"8.10714"},{"name":"MZ_2","value":"8.88961"},{"name":"MZ_3","value":"5.73548"},{"name":"V_1","value":"1.69559"},{"name":"V_2","value":"1.66759"},{"name":"V_3","value":"4.83136"},{"name":"MCO_1A","value":"2.97692"},{"name":"MCO_1B","value":"3.66165"},{"name":"MCO_2A","value":"5.15192"},{"name":"MCO_2B","value":"3.32052"}]'
 ospsy4rootJSON <- fromJSON(json_string4R)
 ```
 
@@ -265,7 +274,9 @@ OsPSY4root$value <- as.numeric(OsPSY4root$value)
 ## OsPSY5	LOC_Os11g38790
 ### Main Stages 
 ```{r}
-json_string5 <- ''
+json_string5 <- '[{"name":"Seedling_Root_Rep1","value":"1050.5"},{"name":"Seedling_Root_Rep2","value":"842.557"},{"name":"Seedling_Root_Rep3","value":"620.523"},{"name":"RICE_CTRL","value":"116.238"},{"name":"MatureLeaf_Rep1","value":"67.2944"},{"name":"MatureLeaf_Rep2","value":"64.2461"},{"name":"MatureLeaf_Rep3","value":"93.3114"},{"name":"YoungLeaf_Rep1","value":"291.273"},{"name":"YoungLeaf_Rep2","value":"197.586"},{"name":"YoungLeaf_Rep3","value":"266.427"},{"name":"SAM_Rep1","value":"28.3421"},{"name":"SAM_Rep2","value":"21.1714"},{"name":"SAM_Rep3","value":"29.9223"},{"name":"YoungInflorescence_Rep1","value":"28.4036"},{"name":"YoungInflorescence_Rep2","value":"66.1632"},{"name":"YoungInflorescence_Rep3","value":"42.5609"},{"name":"InflorescenceP2_Rep1","value":"55.0204"},{"name":"InflorescenceP2_Rep2","value":"66.9599"},{"name":"InflorescenceP2_Rep3","value":"38.8741"},{"name":"InflorescenceP3_Rep1","value":"50.0736"},{"name":"InflorescenceP3_Rep2","value":"39.5839"},{"name":"InflorescenceP3_Rep3","value":"19.1082"},{"name":"InflorescenceP4_Rep1","value":"58.3898"},{"name":"InflorescenceP4_Rep2","value":"58.7077"},{"name":"InflorescenceP4_Rep3","value":"58.6593"},{"name":"InflorescenceP5_Rep1","value":"52.0735"},{"name":"InflorescenceP5_Rep2","value":"66.3446"},{"name":"InflorescenceP5_Rep3","value":"144.452"},{"name":"InflorescenceP6_Rep1","value":"141.318"},{"name":"InflorescenceP6_Rep2","value":"139.914"},{"name":"InflorescenceP6_Rep3","value":"87.1963"},{"name":"Seed_S1_Rep1","value":"311.244"},{"name":"Seed_S1_Rep2","value":"250.35"},{"name":"Seed_S1_Rep3","value":"332.269"},{"name":"Seed_S2_Rep1","value":"134.63"},{"name":"Seed_S2_Rep2","value":"152.476"},{"name":"Seed_S2_Rep3","value":"186.465"},{"name":"Seed_S3_Rep1","value":"156.237"},{"name":"Seed_S3_Rep2","value":"131.284"},{"name":"Seed_S3_Rep3","value":"154.166"},{"name":"Seed_S4_Rep1","value":"154.448"},{"name":"Seed_S4_Rep2","value":"320.179"},{"name":"Seed_S4_Rep3","value":"194.073"},{"name":"Seed_S5_Rep1","value":"249.363"},{"name":"Seed_S5_Rep2","value":"116.238"},{"name":"Seed_S5_Rep3","value":"89.609"},
+{"name":"Stigma_Rep1","value":"43.1856"},{"name":"Stigma_Rep2","value":"39.6067"},{"name":"Stigma_Rep3","value":"22.6082"},{"name":"RICE_CTRL","value":"116.238"},{"name":"Ovary_Rep1","value":"387.7"},{"name":"Ovary_Rep2","value":"348.435"},{"name":"Ovary_Rep3","value":"359.715"},{"name":"SuspensionCell_Rep1","value":"53.9947"},{"name":"Shoot_Rep1","value":"110.13"},{"name":"Root_Rep1","value":"1930.65"},{"name":"Anther_Rep1","value":"143.064"},{"name":"Embryo_Rep1","value":"66.3867"},{"name":"Endosperm_Rep1","value":"906.295"},{"name":"5d-seed_Rep1","value":"236.343"},
+{"name":"Aerobic_coleoptile_Rep1","value":"746.326"},{"name":"Aerobic_coleoptile_Rep2","value":"949.012"},{"name":"RICE_CTRL","value":"116.238"},{"name":"Anoxic_coleoptile_Rep1","value":"156.032"},{"name":"Anoxic_coleoptile_Rep2","value":"121.887"}]'
 
 ospsy5JSON <- fromJSON(json_string5)
 ```
@@ -281,7 +292,8 @@ OsPSY5$value <- as.numeric(OsPSY5$value)
 ### Leaf 
 
 ```{r}
-json_string5L <- ''
+json_string5L <- '[{"name":"R1","value":"2.5177"},{"name":"RICE_CTRL","value":"0.421693"},{"name":"R2","value":"1.72025"},{"name":"R3","value":"0.315369"},{"name":"R4","value":"0"},{"name":"R5","value":"0"},{"name":"R6","value":"0"},{"name":"R7","value":"0"},{"name":"R8","value":"0"},{"name":"R9","value":"0"},{"name":"R10","value":"0.0852928"},{"name":"R11","value":"0"}]'
+
 OsPSY5leaf <- fromJSON(json_string5L)
 
 OsPSY5leaf$value <- as.numeric(OsPSY5leaf$value)
@@ -290,7 +302,8 @@ OsPSY5leaf$value <- as.numeric(OsPSY5leaf$value)
 
 ### Root
 ```{r}
-json_string5R <- ''
+json_string5R <- '[{"name":"EN_1","value":"19.0865"},{"name":"EN_2","value":"30.0383"},{"name":"EN_3","value":"12.6732"},{"name":"Med_CTRL","value":"14.6577"},{"name":"X35S_1","value":"14.9321"},{"name":"X35S_2","value":"10.6538"},{"name":"X35S_3","value":"13.2358"},{"name":"MZ_1","value":"19.2814"},{"name":"MZ_2","value":"15.8116"},{"name":"MZ_3","value":"27.0123"},{"name":"V_1","value":"17.8404"},{"name":"V_2","value":"8.7729"},{"name":"V_3","value":"12.2001"},{"name":"MCO_1A","value":"7.83053"},{"name":"MCO_1B","value":"14.3833"},{"name":"MCO_2A","value":"7.74381"},{"name":"MCO_2B","value":"15.4306"}]'
+
 ospsy5rootJSON <- fromJSON(json_string5R)
 ```
 
@@ -305,7 +318,9 @@ OsPSY5root$value <- as.numeric(OsPSY5root$value)
 ## OsPSY6	LOC_Os07g43770
 ### Main Stages 
 ```{r}
-json_string6 <- ''
+json_string6 <- '[{"name":"Seedling_Root_Rep1","value":"1757.98"},{"name":"Seedling_Root_Rep2","value":"1272.94"},{"name":"Seedling_Root_Rep3","value":"1237.75"},{"name":"RICE_CTRL","value":"472.511"},{"name":"MatureLeaf_Rep1","value":"529.99"},{"name":"MatureLeaf_Rep2","value":"548.635"},{"name":"MatureLeaf_Rep3","value":"631.09"},{"name":"YoungLeaf_Rep1","value":"984.581"},{"name":"YoungLeaf_Rep2","value":"1039.2"},{"name":"YoungLeaf_Rep3","value":"850.264"},{"name":"SAM_Rep1","value":"332.252"},{"name":"SAM_Rep2","value":"280.022"},{"name":"SAM_Rep3","value":"413.076"},{"name":"YoungInflorescence_Rep1","value":"91.7904"},{"name":"YoungInflorescence_Rep2","value":"106.155"},{"name":"YoungInflorescence_Rep3","value":"202.102"},{"name":"InflorescenceP2_Rep1","value":"253.786"},{"name":"InflorescenceP2_Rep2","value":"173.757"},{"name":"InflorescenceP2_Rep3","value":"208.057"},{"name":"InflorescenceP3_Rep1","value":"288.53"},{"name":"InflorescenceP3_Rep2","value":"269.996"},{"name":"InflorescenceP3_Rep3","value":"230.385"},{"name":"InflorescenceP4_Rep1","value":"510.236"},{"name":"InflorescenceP4_Rep2","value":"538.404"},{"name":"InflorescenceP4_Rep3","value":"416.094"},{"name":"InflorescenceP5_Rep1","value":"1784.69"},{"name":"InflorescenceP5_Rep2","value":"1952.85"},{"name":"InflorescenceP5_Rep3","value":"1871.71"},{"name":"InflorescenceP6_Rep1","value":"1753.35"},{"name":"InflorescenceP6_Rep2","value":"1583.58"},{"name":"InflorescenceP6_Rep3","value":"1647.17"},{"name":"Seed_S1_Rep1","value":"1136.85"},{"name":"Seed_S1_Rep2","value":"1276.21"},{"name":"Seed_S1_Rep3","value":"1421.12"},{"name":"Seed_S2_Rep1","value":"781.52"},{"name":"Seed_S2_Rep2","value":"768.542"},{"name":"Seed_S2_Rep3","value":"776.321"},{"name":"Seed_S3_Rep1","value":"727.605"},{"name":"Seed_S3_Rep2","value":"723.07"},{"name":"Seed_S3_Rep3","value":"846.176"},{"name":"Seed_S4_Rep1","value":"1037.8"},{"name":"Seed_S4_Rep2","value":"1123.76"},{"name":"Seed_S4_Rep3","value":"943.867"},{"name":"Seed_S5_Rep1","value":"863.018"},{"name":"Seed_S5_Rep2","value":"875.509"},{"name":"Seed_S5_Rep3","value":"988.309"},
+{"name":"Stigma_Rep1","value":"636.212"},{"name":"Stigma_Rep2","value":"695.855"},{"name":"Stigma_Rep3","value":"732.031"},{"name":"RICE_CTRL","value":"472.511"},{"name":"Ovary_Rep1","value":"74.574"},{"name":"Ovary_Rep2","value":"83.0776"},{"name":"Ovary_Rep3","value":"59.5202"},{"name":"SuspensionCell_Rep1","value":"3163.76"},{"name":"Shoot_Rep1","value":"668.747"},{"name":"Root_Rep1","value":"1219.78"},{"name":"Anther_Rep1","value":"919.958"},{"name":"Embryo_Rep1","value":"366.895"},{"name":"Endosperm_Rep1","value":"305.261"},{"name":"5d-seed_Rep1","value":"241.64"},
+{"name":"Aerobic_coleoptile_Rep1","value":"544.429"},{"name":"Aerobic_coleoptile_Rep2","value":"540.152"},{"name":"RICE_CTRL","value":"472.511"},{"name":"Anoxic_coleoptile_Rep1","value":"404.869"},{"name":"Anoxic_coleoptile_Rep2","value":"385.257"}]'
 
 ospsy6JSON <- fromJSON(json_string6)
 ```
@@ -321,7 +336,8 @@ OsPSY6$value <- as.numeric(OsPSY6$value)
 ### Leaf 
 
 ```{r}
-json_string6L <- ''
+json_string6L <- '[{"name":"R1","value":"14.5471"},{"name":"RICE_CTRL","value":"6.92827"},{"name":"R2","value":"14.7755"},{"name":"R3","value":"10.786"},{"name":"R4","value":"9.16952"},{"name":"R5","value":"7.47404"},{"name":"R6","value":"2.72027"},{"name":"R7","value":"4.27472"},{"name":"R8","value":"3.72992"},{"name":"R9","value":"3.96095"},{"name":"R10","value":"2.77126"},{"name":"R11","value":"2.00161"}]'
+
 OsPSY6leaf <- fromJSON(json_string6L)
 
 OsPSY6leaf$value <- as.numeric(OsPSY6leaf$value)
@@ -330,7 +346,8 @@ OsPSY6leaf$value <- as.numeric(OsPSY6leaf$value)
 
 ### Root
 ```{r}
-json_string6R <- ''
+json_string6R <- '[{"name":"EN_1","value":"2.96073"},{"name":"EN_2","value":"2.67568"},{"name":"EN_3","value":"1.96589"},{"name":"Med_CTRL","value":"4.78532"},{"name":"X35S_1","value":"46.9381"},{"name":"X35S_2","value":"30.8494"},{"name":"X35S_3","value":"35.1737"},{"name":"MZ_1","value":"9.04184"},{"name":"MZ_2","value":"12.7472"},{"name":"MZ_3","value":"10.9659"},{"name":"V_1","value":"6.30359"},{"name":"V_2","value":"6.81947"},{"name":"V_3","value":"2.87381"},{"name":"MCO_1A","value":"2.76679"},{"name":"MCO_1B","value":"3.26706"},{"name":"MCO_2A","value":"2.73615"},{"name":"MCO_2B","value":"3.08613"}]'
+
 ospsy6rootJSON <- fromJSON(json_string6R)
 ```
 
@@ -345,7 +362,9 @@ OsPSY6root$value <- as.numeric(OsPSY6root$value)
 ## OsPSY7	LOC_Os05g46470
 ### Main Stages 
 ```{r}
-json_string7 <- ''
+json_string7 <- '[{"name":"Seedling_Root_Rep1","value":"384.822"},{"name":"Seedling_Root_Rep2","value":"325.619"},{"name":"Seedling_Root_Rep3","value":"149.649"},{"name":"RICE_CTRL","value":"160.387"},{"name":"MatureLeaf_Rep1","value":"436.753"},{"name":"MatureLeaf_Rep2","value":"433.566"},{"name":"MatureLeaf_Rep3","value":"818.346"},{"name":"YoungLeaf_Rep1","value":"414.31"},{"name":"YoungLeaf_Rep2","value":"576.866"},{"name":"YoungLeaf_Rep3","value":"249.477"},{"name":"SAM_Rep1","value":"663.406"},{"name":"SAM_Rep2","value":"636.55"},{"name":"SAM_Rep3","value":"892.787"},{"name":"YoungInflorescence_Rep1","value":"2081.63"},{"name":"YoungInflorescence_Rep2","value":"2279.18"},{"name":"YoungInflorescence_Rep3","value":"2253.79"},{"name":"InflorescenceP2_Rep1","value":"3339.57"},{"name":"InflorescenceP2_Rep2","value":"3699.56"},{"name":"InflorescenceP2_Rep3","value":"3212.49"},{"name":"InflorescenceP3_Rep1","value":"2303.5"},{"name":"InflorescenceP3_Rep2","value":"2785.25"},{"name":"InflorescenceP3_Rep3","value":"2542.37"},{"name":"InflorescenceP4_Rep1","value":"2339.76"},{"name":"InflorescenceP4_Rep2","value":"2285.75"},{"name":"InflorescenceP4_Rep3","value":"1921.97"},{"name":"InflorescenceP5_Rep1","value":"1500.35"},{"name":"InflorescenceP5_Rep2","value":"2491.64"},{"name":"InflorescenceP5_Rep3","value":"2131.22"},{"name":"InflorescenceP6_Rep1","value":"2668.23"},{"name":"InflorescenceP6_Rep2","value":"2889.89"},{"name":"InflorescenceP6_Rep3","value":"2790.44"},{"name":"Seed_S1_Rep1","value":"1289.17"},{"name":"Seed_S1_Rep2","value":"1113.94"},{"name":"Seed_S1_Rep3","value":"1416.8"},{"name":"Seed_S2_Rep1","value":"329.364"},{"name":"Seed_S2_Rep2","value":"213.854"},{"name":"Seed_S2_Rep3","value":"208.816"},{"name":"Seed_S3_Rep1","value":"247.079"},{"name":"Seed_S3_Rep2","value":"301.675"},{"name":"Seed_S3_Rep3","value":"274.714"},{"name":"Seed_S4_Rep1","value":"179.217"},{"name":"Seed_S4_Rep2","value":"103.595"},{"name":"Seed_S4_Rep3","value":"169.168"},{"name":"Seed_S5_Rep1","value":"9.57676"},{"name":"Seed_S5_Rep2","value":"89.3781"},{"name":"Seed_S5_Rep3","value":"91.4015"},
+{"name":"Stigma_Rep1","value":"121.477"},{"name":"Stigma_Rep2","value":"180.927"},{"name":"Stigma_Rep3","value":"157.816"},{"name":"RICE_CTRL","value":"160.387"},{"name":"Ovary_Rep1","value":"166.278"},{"name":"Ovary_Rep2","value":"160.387"},{"name":"Ovary_Rep3","value":"170.724"},{"name":"SuspensionCell_Rep1","value":"58.3494"},{"name":"Shoot_Rep1","value":"482.452"},{"name":"Root_Rep1","value":"84.9405"},{"name":"Anther_Rep1","value":"713.597"},{"name":"Embryo_Rep1","value":"77.763"},{"name":"Endosperm_Rep1","value":"224.277"},{"name":"5d-seed_Rep1","value":"141.16"},
+{"name":"Aerobic_coleoptile_Rep1","value":"991.958"},{"name":"Aerobic_coleoptile_Rep2","value":"503.465"},{"name":"RICE_CTRL","value":"160.387"},{"name":"Anoxic_coleoptile_Rep1","value":"561.135"},{"name":"Anoxic_coleoptile_Rep2","value":"647.532"}'
 
 ospsy7JSON <- fromJSON(json_string7)
 ```
@@ -360,7 +379,7 @@ OsPSY7$value <- as.numeric(OsPSY7$value)
 
 ### Leaf 
 ```{r}
-json_string7L <- ''
+json_string7L <- '[{"name":"R1","value":"2.23115"},{"name":"RICE_CTRL","value":"1.71737"},{"name":"R2","value":"1.41237"},{"name":"R3","value":"0.406882"},{"name":"R4","value":"2.20277"},{"name":"R5","value":"3.60263"},{"name":"R6","value":"1.03542"},{"name":"R7","value":"0.682566"},{"name":"R8","value":"1.63656"},{"name":"R9","value":"1.90171"},{"name":"R10","value":"1.46724"},{"name":"R11","value":"2.31183"}]'
 OsPSY7leaf <- fromJSON(json_string7L)
 
 OsPSY7leaf$value <- as.numeric(OsPSY7leaf$value)
@@ -369,7 +388,7 @@ OsPSY7leaf$value <- as.numeric(OsPSY7leaf$value)
 
 ### Root
 ```{r}
-json_string7R <- ''
+json_string7R <- '[{"name":"EN_1","value":"0"},{"name":"EN_2","value":"0.589204"},{"name":"EN_3","value":"0"},{"name":"Med_CTRL","value":"0"},{"name":"X35S_1","value":"1.20187"},{"name":"X35S_2","value":"0"},{"name":"X35S_3","value":"0"},{"name":"MZ_1","value":"0.414808"},{"name":"MZ_2","value":"0"},{"name":"MZ_3","value":"0.670767"},{"name":"V_1","value":"0"},{"name":"V_2","value":"0"},{"name":"V_3","value":"0"},{"name":"MCO_1A","value":"0.609267"},{"name":"MCO_1B","value":"0"},{"name":"MCO_2A","value":"0"},{"name":"MCO_2B","value":"1.35918"}]'
 ospsy7rootJSON <- fromJSON(json_string7R)
 ```
 
@@ -384,7 +403,9 @@ OsPSY7root$value <- as.numeric(OsPSY7root$value)
 ## OsPSY8	LOC_Os01g15970
 ### Main Stages 
 ```{r}
-json_string8 <- ''
+json_string8 <- '[{"name":"Seedling_Root_Rep1","value":"831.299"},{"name":"Seedling_Root_Rep2","value":"653.575"},{"name":"Seedling_Root_Rep3","value":"984.328"},{"name":"RICE_CTRL","value":"154.83"},{"name":"MatureLeaf_Rep1","value":"5.38666"},{"name":"MatureLeaf_Rep2","value":"48.9724"},{"name":"MatureLeaf_Rep3","value":"5.57554"},{"name":"YoungLeaf_Rep1","value":"1.5283"},{"name":"YoungLeaf_Rep2","value":"2.82991"},{"name":"YoungLeaf_Rep3","value":"30.3863"},{"name":"SAM_Rep1","value":"258.505"},{"name":"SAM_Rep2","value":"211.272"},{"name":"SAM_Rep3","value":"272.848"},{"name":"YoungInflorescence_Rep1","value":"203.356"},{"name":"YoungInflorescence_Rep2","value":"183.882"},{"name":"YoungInflorescence_Rep3","value":"130.359"},{"name":"InflorescenceP2_Rep1","value":"234.069"},{"name":"InflorescenceP2_Rep2","value":"212.869"},{"name":"InflorescenceP2_Rep3","value":"247.568"},{"name":"InflorescenceP3_Rep1","value":"260.812"},{"name":"InflorescenceP3_Rep2","value":"267.485"},{"name":"InflorescenceP3_Rep3","value":"364.536"},{"name":"InflorescenceP4_Rep1","value":"386.436"},{"name":"InflorescenceP4_Rep2","value":"499.058"},{"name":"InflorescenceP4_Rep3","value":"420.052"},{"name":"InflorescenceP5_Rep1","value":"601.206"},{"name":"InflorescenceP5_Rep2","value":"578.094"},{"name":"InflorescenceP5_Rep3","value":"507.906"},{"name":"InflorescenceP6_Rep1","value":"983.376"},{"name":"InflorescenceP6_Rep2","value":"1166.82"},{"name":"InflorescenceP6_Rep3","value":"1287.59"},{"name":"Seed_S1_Rep1","value":"144.007"},{"name":"Seed_S1_Rep2","value":"213.684"},{"name":"Seed_S1_Rep3","value":"106.53"},{"name":"Seed_S2_Rep1","value":"274.963"},{"name":"Seed_S2_Rep2","value":"275.878"},{"name":"Seed_S2_Rep3","value":"396.766"},{"name":"Seed_S3_Rep1","value":"176.074"},{"name":"Seed_S3_Rep2","value":"248.142"},{"name":"Seed_S3_Rep3","value":"212.385"},{"name":"Seed_S4_Rep1","value":"157.359"},{"name":"Seed_S4_Rep2","value":"357.752"},{"name":"Seed_S4_Rep3","value":"210.437"},{"name":"Seed_S5_Rep1","value":"202.93"},{"name":"Seed_S5_Rep2","value":"237.707"},{"name":"Seed_S5_Rep3","value":"108.095"},
+{"name":"Stigma_Rep1","value":"58.8326"},{"name":"Stigma_Rep2","value":"48.0912"},{"name":"Stigma_Rep3","value":"30.9573"},{"name":"RICE_CTRL","value":"154.83"},{"name":"Ovary_Rep1","value":"153.878"},{"name":"Ovary_Rep2","value":"131.292"},{"name":"Ovary_Rep3","value":"111.049"},{"name":"SuspensionCell_Rep1","value":"5141.54"},{"name":"Shoot_Rep1","value":"315.172"},{"name":"Root_Rep1","value":"4674.18"},{"name":"Anther_Rep1","value":"154.83"},{"name":"Embryo_Rep1","value":"1546.15"},{"name":"Endosperm_Rep1","value":"198.759"},{"name":"5d-seed_Rep1","value":"1234.71"},
+{"name":"Aerobic_coleoptile_Rep1","value":"380.064"},{"name":"Aerobic_coleoptile_Rep2","value":"867.196"},{"name":"RICE_CTRL","value":"154.83"},{"name":"Anoxic_coleoptile_Rep1","value":"1045.01"},{"name":"Anoxic_coleoptile_Rep2","value":"950.262"}]'
 
 ospsy8JSON <- fromJSON(json_string8)
 ```
@@ -400,7 +421,7 @@ OsPSY8$value <- as.numeric(OsPSY8$value)
 ### Leaf 
 
 ```{r}
-json_string8L <- ''
+json_string8L <- '[{"name":"R1","value":"59.0292"},{"name":"RICE_CTRL","value":"16.3985"},{"name":"R2","value":"49.2285"},{"name":"R3","value":"31.8847"},{"name":"R4","value":"13.557"},{"name":"R5","value":"10.3083"},{"name":"R6","value":"3.89381"},{"name":"R7","value":"4.04281"},{"name":"R8","value":"2.45178"},{"name":"R9","value":"3.11226"},{"name":"R10","value":"0.911956"},{"name":"R11","value":"1.96313"}]'
 OsPSY8leaf <- fromJSON(json_string8L)
 
 OsPSY8leaf$value <- as.numeric(OsPSY8leaf$value)
@@ -409,7 +430,7 @@ OsPSY8leaf$value <- as.numeric(OsPSY8leaf$value)
 
 ### Root
 ```{r}
-json_string8R <- ''
+json_string8R <- '[{"name":"EN_1","value":"77.0037"},{"name":"EN_2","value":"64.5289"},{"name":"EN_3","value":"60.0386"},{"name":"Med_CTRL","value":"65.7378"},{"name":"X35S_1","value":"22.5788"},{"name":"X35S_2","value":"27.6782"},{"name":"X35S_3","value":"28.499"},{"name":"MZ_1","value":"102.995"},{"name":"MZ_2","value":"87.907"},{"name":"MZ_3","value":"121.356"},{"name":"V_1","value":"78.9921"},{"name":"V_2","value":"48.0053"},{"name":"V_3","value":"80.6884"},{"name":"MCO_1A","value":"64.1094"},{"name":"MCO_1B","value":"66.9466"},{"name":"MCO_2A","value":"58.8709"},{"name":"MCO_2B","value":"81.7234"}]'
 ospsy8rootJSON <- fromJSON(json_string8R)
 ```
 
@@ -421,7 +442,7 @@ OsPSY8root$value <- as.numeric(OsPSY8root$value)
 ```
 
 
-## OsTPST	LOC_Os06g06370
+## OsTPS9	LOC_Os06g06370 -> NO INFORMATION AVAILABLE
 ### Main Stages 
 ```{r}
 json_string9 <- ''
